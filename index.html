@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PsyInsomnia — Instrument CBT-I pentru insomnie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script type='text/javascript' nonce='JsSwwzcBeT1s4LXo36QK3Q==' src='https://5f08720f-e112-4d0a-8b11-f1a71607c9c4.frame.claudeusercontent.com/_Wiqcr5pKGGvsR7PJzrKEaUq5P6eskvOV0A4DINGkpkoR1OOC0nPlTuOWEeViKBCzcYfVmQz67895iq5ahfFqDWXv9l0Ae86wuJfrRQkprOhVfqzlYgK89AtOZliM6_guhZwZG37DYujfajIyalskwwcsEZdUsGiw3ogZySDX-NA-hn1tWWQsI6-eJWDwDMluypl5v2IE3gEbrX06EiGVqC6zVl6H_3_18hyBErrZwFO214LpUD14FuD0y5sccOdY-z2JrzNzNIo5N1N-w_gr5lBI6OAhgyfkniEyeB4hxUvOuWh6VYe4PONAs1_izzWUlXk6-7cNfLAlunu7t9JY54_LRIEQIhaD25U5ChHDIuQzKi-42Vkc48BY4p4Drj7kEhx5tOT19Op6IDaFMxQ8B92XSSHMmvyfY1wwB5-bbCqD3JAxK-3jrmjbrMoTS-xnB0Ik1z2SlXWf_7MQiFmmqJX-6crdlZSx0zmmQiCxq8xVOLLdHPmFMsmq_iBtubGw02tMiw4cvLFnuYMgTPc_uIkmRR32hPTP6qYGgc-gh8RdnWrGuiaqEI_zE4h9ckov81Q7wFnxM-haA5HGupcdbQV-sNeOLW-5NIqU2zPnkVOLPpHoJiKdLMc-hQWMvU_UKXT7zQ0oYf0gSAG1WNnXsd-2P672iz8rdS8p82gEz_WH_IM28GCSYd2CUA9Td1_Idt0fqGf0qC9o8g3pBwn5A'></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --ink:#131A2B;
+    --ink-soft:#1E2A47;
+    --paper:#F1EEE6;
+    --card:#FFFFFF;
+    --accent:#B8863B;
+    --accent-soft:#E8D5AE;
+    --good:#4F7A63;
+    --good-soft:#DCE8DF;
+    --warn:#A8574F;
+    --warn-soft:#F0DAD6;
+    --text:#1B2029;
+    --muted:#6B6F76;
+    --line:#DEDACE;
+    --line-dark:#39456A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;}
+  a{color:var(--accent);}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  .prose{max-width:680px;}
+
+  nav.topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(19,26,43,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  nav.topnav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;max-width:1040px;}
+  .brand{color:#F1EEE6;font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;letter-spacing:0.01em;text-decoration:none;}
+  .brand span{color:var(--accent-soft);}
+  .navlinks{display:flex;gap:2px;}
+  .navlinks a{
+    color:#C7CCDA;text-decoration:none;font-size:0.88rem;padding:8px 12px;border-radius:3px;
+    transition:color .15s, background .15s;white-space:nowrap;
+  }
+  .navlinks a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+  #navToggle{display:none;background:none;border:1px solid var(--line-dark);color:#F1EEE6;padding:6px 10px;border-radius:3px;font-size:1rem;cursor:pointer;}
+
+  .profilebar{background:var(--card);border-bottom:1px solid var(--line);}
+  .profilebar-inner{display:flex;align-items:center;gap:10px;padding:12px 28px;flex-wrap:wrap;max-width:1040px;}
+  .profilebar label{margin:0;font-size:0.82rem;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .profilebar select{width:auto;min-width:160px;padding:7px 10px;}
+  .privacy-note{width:100%;font-size:0.8rem;color:var(--muted);margin:2px 0 0;padding:0 28px 10px;max-width:1040px;box-sizing:border-box;}
+
+  header.hero{
+    background:radial-gradient(ellipse 900px 500px at 15% -10%, #223055 0%, var(--ink) 55%);
+    color:#F1EEE6;
+    padding:76px 0 64px;
+    opacity:0;
+    animation:fadeIn .7s ease forwards;
+  }
+  @keyframes fadeIn{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){ header.hero{animation:none;opacity:1;} }
+  header.hero .wrap{max-width:1040px;}
+  .eyebrow-line{width:44px;height:2px;background:var(--accent);margin-bottom:22px;}
+  header.hero h1{font-size:clamp(2.1rem,4.4vw,3.1rem);font-weight:600;line-height:1.12;margin:0 0 20px;max-width:14ch;}
+  header.hero p.lead{font-size:1.12rem;color:#C7CCDA;max-width:52ch;margin:0 0 30px;}
+  .hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:36px;border-top:1px solid var(--line-dark);padding-top:26px;}
+  .hero-stat b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--accent-soft);font-weight:600;}
+  .hero-stat span{font-size:0.85rem;color:#98A0B5;}
+  .btn{
+    display:inline-block;background:var(--accent);color:#1B1305;font-weight:600;
+    padding:12px 22px;border-radius:3px;text-decoration:none;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:0.95rem;transition:background .15s, transform .1s;
+  }
+  .btn:hover{background:#CB9A4E;}
+  .btn:active{transform:translateY(1px);}
+  .btn.secondary{background:transparent;color:#F1EEE6;border:1px solid var(--line-dark);}
+  .btn.secondary:hover{background:rgba(255,255,255,0.06);}
+  .btn.small{padding:8px 14px;font-size:0.85rem;}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent-soft);}
+  .btn.danger{background:transparent;color:var(--warn);border:1px solid var(--warn);}
+  .btn.danger:hover{background:var(--warn-soft);}
+  .btn[disabled]{opacity:0.45;cursor:not-allowed;}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section.alt{background:var(--card);}
+  .kicker{color:var(--accent);font-size:0.85rem;font-weight:600;margin:0 0 10px;}
+  h2.title{font-size:1.9rem;font-weight:600;margin:0 0 14px;}
+  p.dek{color:var(--muted);font-size:1.02rem;max-width:60ch;margin:0 0 34px;}
+  #isi p.dek{margin-bottom:20px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:24px 26px;}
+  .card + .card{margin-top:14px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+  label{display:block;font-size:0.85rem;color:var(--muted);margin:0 0 6px;font-weight:500;}
+  input[type=text],input[type=date],input[type=time],input[type=number],select,textarea{
+    width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:3px;
+    font-family:'Inter',sans-serif;font-size:0.95rem;background:#FCFBF8;color:var(--text);
+  }
+  textarea{resize:vertical;min-height:56px;}
+  input:focus,select:focus,textarea:focus,button:focus,a:focus{outline:2px solid var(--accent);outline-offset:2px;}
+  .field{margin-bottom:16px;}
+  .field-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:860px){.field-row{grid-template-columns:repeat(2,1fr);}}
+  .form-actions{display:flex;gap:10px;align-items:center;padding-top:4px;}
+  .editing-flag{display:none;background:var(--accent-soft);color:#5A4118;padding:8px 14px;border-radius:3px;font-size:0.85rem;margin-bottom:16px;}
+  .editing-flag.show{display:block;}
+
+  .isi-q{border-top:1px solid var(--line);padding:20px 0;}
+  .isi-q:first-child{border-top:none;}
+  .isi-q p{font-weight:500;margin:0 0 12px;}
+  .scale{display:flex;gap:8px;flex-wrap:wrap;}
+  .scale label{
+    display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;
+    padding:6px 13px;cursor:pointer;font-size:0.86rem;color:var(--text);font-weight:400;margin:0;
+    background:#FCFBF8;
+  }
+  .scale input{width:auto;margin:0;}
+  .scale label:has(input:checked){background:var(--accent-soft);border-color:var(--accent);}
+  .isi-result{margin-top:26px;padding:20px;border-radius:4px;background:var(--paper);border:1px solid var(--line);}
+  .isi-result .score{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:600;}
+  .badge{display:inline-block;padding:3px 11px;border-radius:20px;font-size:0.8rem;font-weight:600;}
+  .badge.b0{background:var(--good-soft);color:var(--good);}
+  .badge.b1{background:#E9E4D2;color:#8A7A3E;}
+  .badge.b2{background:#F3E4CC;color:#A6712B;}
+  .badge.b3{background:var(--warn-soft);color:var(--warn);}
+
+  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+  th{text-align:left;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td.note-cell{white-space:normal;max-width:160px;color:var(--muted);font-style:italic;}
+  tr:last-child td{border-bottom:none;}
+  .table-scroll{overflow-x:auto;}
+  .se-tag{padding:2px 9px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+  .se-good{background:var(--good-soft);color:var(--good);}
+  .se-mid{background:#EFE6CE;color:#8A6C22;}
+  .se-low{background:var(--warn-soft);color:var(--warn);}
+  .icon-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.9rem;padding:2px 7px;}
+  .icon-btn:hover{color:var(--accent);}
+  .icon-btn.danger:hover{color:var(--warn);}
+
+  .empty{color:var(--muted);font-size:0.92rem;font-style:italic;padding:18px 0;}
+
+  .calc-out{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+  @media(max-width:720px){.calc-out{grid-template-columns:1fr;}}
+  .calc-box{border:1px solid var(--line);border-radius:4px;padding:16px 18px;background:var(--paper);}
+  .calc-box b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;color:var(--ink);}
+  .calc-box span{font-size:0.82rem;color:var(--muted);}
+  .se-table td,.se-table th{font-size:0.86rem;}
+  .row-highlight{background:var(--accent-soft) !important;}
+
+  .acc-item{border:1px solid var(--line);border-radius:4px;margin-bottom:10px;background:var(--card);overflow:hidden;}
+  .acc-head{
+    width:100%;text-align:left;background:none;border:none;padding:16px 20px;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;color:var(--text);
+  }
+  .acc-head .plus{color:var(--accent);font-size:1.3rem;font-family:'Inter',sans-serif;transition:transform .2s;}
+  .acc-item.open .plus{transform:rotate(45deg);}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .acc-body-inner{padding:0 20px 20px;color:var(--text);}
+  .acc-body-inner ol,.acc-body-inner ul{padding-left:22px;margin:8px 0;}
+  .acc-body-inner li{margin-bottom:8px;}
+  .note{background:var(--paper);border-left:3px solid var(--accent);padding:12px 16px;font-size:0.9rem;color:var(--muted);margin-top:12px;border-radius:0 3px 3px 0;}
+
+  .chart-wrap{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px;}
+  canvas{max-width:100%;}
+
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+  @media(max-width:720px){.compare-grid{grid-template-columns:1fr;}}
+  .compare-box{border:1px solid var(--line);border-radius:4px;padding:18px 20px;background:var(--paper);}
+  .compare-box p.label{font-size:0.82rem;color:var(--muted);margin:0 0 8px;font-weight:600;}
+  .compare-nums{display:flex;align-items:baseline;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;color:var(--ink);}
+  .compare-nums .arrow{color:var(--muted);font-family:'Inter',sans-serif;font-size:1.1rem;}
+  .compare-delta{font-size:0.85rem;font-weight:600;margin-top:6px;font-family:'Inter',sans-serif;}
+  .compare-delta.better{color:var(--good);}
+  .compare-delta.worse{color:var(--warn);}
+  .compare-delta.flat{color:var(--muted);}
+
+  .disclaimer{background:var(--warn-soft);border:1px solid #D9B9B5;border-radius:4px;padding:16px 18px;font-size:0.87rem;color:#6B3733;margin-bottom:32px;}
+  .disclaimer b{color:#5A2C29;}
+
+  .data-tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);}
+
+  footer{background:var(--ink);color:#98A0B5;padding:36px 0;font-size:0.87rem;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;max-width:1040px;}
+  footer a{color:var(--accent-soft);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+
+  ::selection{background:var(--accent-soft);}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+  /* ===== Despre / Resurse / Contact ===== */
+  .about-intro{max-width:62ch;margin:0 0 30px;font-size:1.05rem;}
+  .mission{background:var(--ink);color:#F1EEE6;border-radius:4px;padding:26px 30px;margin-bottom:28px;}
+  .mission .kicker{color:var(--accent-soft);}
+  .mission h3{margin:0 0 8px;font-size:1.5rem;font-weight:600;}
+  .mission p{margin:0;color:#C7CCDA;max-width:60ch;}
+  .person h3{margin:0 0 2px;font-size:1.25rem;font-weight:600;}
+  .person .role{color:var(--accent);font-size:0.85rem;font-weight:600;margin:0 0 12px;}
+  .person p{margin:0;}
+  .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:28px;}
+  .video{position:relative;aspect-ratio:16/9;background:#000;border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .res-links{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .res-link{display:block;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px 22px;transition:border-color .15s, transform .1s;}
+  .res-link:hover{border-color:var(--accent);}
+  .res-link b{display:block;font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:4px;}
+  .res-link span{font-size:0.88rem;color:var(--muted);}
+  .contact-card h3{margin:0 0 14px;font-size:1.2rem;font-weight:600;}
+  .contact-list{list-style:none;margin:0;padding:0;}
+  .contact-list li{padding:7px 0;border-bottom:1px solid var(--line);font-size:0.95rem;word-break:break-word;}
+  .contact-list li:last-child{border-bottom:none;}
+  .contact-list .lbl{display:block;font-size:0.76rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+  .contact-list a{text-decoration:none;font-weight:500;}
+  .contact-list a:hover{text-decoration:underline;}
+  .booking{margin-top:16px;}
+  .booking h3{margin:0 0 6px;font-size:1.2rem;font-weight:600;}
+  .booking ul{margin:8px 0 0;padding-left:20px;}
+  .price-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+  .price{border:1px solid var(--line);border-radius:4px;padding:16px 18px;background:var(--paper);}
+  .price b{display:block;font-family:'Fraunces',serif;font-size:1.6rem;color:var(--ink);font-weight:600;}
+  .price span{font-size:0.85rem;color:var(--muted);}
+  .btn.wa{background:var(--good);color:#fff;}
+  .btn.wa:hover{background:#5E8D74;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  @media(max-width:720px){.res-links,.price-row{grid-template-columns:1fr;}}
+  @media(max-width:1000px){.navlinks a{padding:8px 8px;font-size:0.84rem;}}
+  .person-head{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+  .person-head .photo{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--accent-soft);flex-shrink:0;background:var(--paper);}
+  .person-head h3{margin:0 0 2px;}
+  .person-head .role{margin:0;}
+  .person > .role{display:none;}
+  a.video{display:block;text-decoration:none;background:linear-gradient(135deg,#1E2A47,#131A2B);}
+  a.video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transition:opacity .15s, transform .25s;}
+  a.video:hover img{opacity:1;transform:scale(1.03);}
+  a.video .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(19,26,43,.82);color:#F1EEE6;display:flex;align-items:center;justify-content:center;font-size:1.2rem;padding-left:4px;border:2px solid var(--accent-soft);}
+  a.video .yt{position:absolute;left:10px;bottom:10px;background:rgba(19,26,43,.85);color:#F1EEE6;font-size:.78rem;padding:4px 10px;border-radius:20px;}
+
+  /* ===== UX / flow ===== */
+  section,header.hero{scroll-margin-top:66px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .navlinks a.active{color:#fff;background:rgba(255,255,255,0.1);}
+  .navlinks a.cta{background:var(--accent);color:#1B1305;font-weight:600;margin-left:6px;}
+  .navlinks a.cta:hover,.navlinks a.cta.active{background:#CB9A4E;color:#1B1305;}
+  .flow{background:var(--card);border-bottom:1px solid var(--line);padding:34px 0;}
+  .flow h2{font-size:1.15rem;margin:0 0 4px;font-weight:600;}
+  .flow p.sub{margin:0 0 18px;color:var(--muted);font-size:0.92rem;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .step{display:block;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:4px;padding:14px 16px;background:var(--paper);position:relative;transition:border-color .15s;}
+  .step:hover{border-color:var(--accent);}
+  .step .n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--line);color:var(--ink);font-weight:700;font-size:0.82rem;margin-bottom:8px;}
+  .step b{display:block;font-family:'Fraunces',serif;font-size:1rem;margin-bottom:2px;}
+  .step span.s{font-size:0.82rem;color:var(--muted);}
+  .step.done .n{background:var(--good);color:#fff;}
+  .step.done{border-color:var(--good-soft);}
+  .step.next{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+  .step.next .n{background:var(--accent);color:#1B1305;}
+  .step .tag{position:absolute;top:10px;right:12px;font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;}
+  @media(max-width:860px){.steps{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.steps{grid-template-columns:1fr;}}
+  .help-note{margin-top:16px;font-size:0.9rem;color:var(--muted);}
+  .cta-band{background:var(--ink);color:#F1EEE6;padding:48px 0;border-bottom:1px solid var(--line-dark);}
+  .cta-band .wrap{max-width:1040px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .cta-band h2{margin:0 0 6px;font-size:1.5rem;font-weight:600;}
+  .cta-band p{margin:0;color:#C7CCDA;max-width:52ch;}
+  #toTop{position:fixed;right:18px;bottom:18px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-dark);background:var(--ink);color:#F1EEE6;font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;}
+  #toTop.show{opacity:1;pointer-events:auto;}
+
+  /* ===== Profil compact + notă ===== */
+  .notice{background:var(--warn-soft);border-bottom:1px solid #D9B9B5;color:#6B3733;font-size:0.86rem;}
+  .notice[hidden]{display:none;}
+  .notice .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:9px;padding-bottom:9px;flex-wrap:wrap;}
+  .profilebar-inner{gap:14px;}
+  .profile-menu summary,.privacy-note summary{cursor:pointer;font-size:0.82rem;color:var(--muted);list-style:none;}
+  .profile-menu summary::-webkit-details-marker,.privacy-note summary::-webkit-details-marker{display:none;}
+  .profile-menu summary:hover,.privacy-note summary:hover{color:var(--accent);}
+  .profile-menu summary::after{content:" ▾";}
+  .profile-menu[open] summary::after{content:" ▴";}
+  .profile-menu{position:relative;}
+  .profile-actions{position:absolute;z-index:20;top:26px;left:0;display:flex;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px;box-shadow:0 6px 20px rgba(19,26,43,.12);min-width:max-content;}
+  .privacy-chip{font-size:0.8rem;color:var(--muted);margin-left:auto;}
+  .privacy-note{padding:0 28px 10px;margin:0;}
+  .privacy-note p{margin:6px 0 0;max-width:80ch;}
+  .navlinks a{white-space:nowrap;}
+
+  .isi-toggle{display:inline-flex;align-items:center;gap:8px;}
+  .isi-toggle .chev{transition:transform .2s;}
+  .isi-toggle[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  #isiBody{margin-top:22px;}
+  #isiBody[hidden]{display:none;}
+
+  .sec-toggle{display:inline-flex;align-items:center;gap:8px;}
+  .sec-toggle .chev{transition:transform .2s;}
+  .sec-toggle[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  .sec-body{margin-top:22px;}
+  .sec-body[hidden]{display:none;}
+  section:has(.sec-toggle) p.dek{margin-bottom:20px;}
+
+  /* ===== Footer ===== */
+  footer.site-footer{padding:52px 0 26px;font-size:0.9rem;}
+  footer.site-footer .wrap.foot{display:block;max-width:1040px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1.3fr;gap:36px;padding-bottom:34px;border-bottom:1px solid var(--line-dark);}
+  .site-footer .brand{font-size:1.3rem;}
+  .foot-tag{margin:6px 0 10px;color:var(--accent-soft);font-size:0.85rem;font-weight:600;}
+  .foot-text{margin:0 0 18px;max-width:38ch;color:#98A0B5;}
+  .site-footer h4{margin:0 0 12px;font-family:'Inter',sans-serif;font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;color:#C7CCDA;}
+  .foot-links{list-style:none;margin:0;padding:0;}
+  .foot-links li{padding:4px 0;color:#98A0B5;word-break:break-word;}
+  .foot-links li.gap{margin-top:10px;}
+  .foot-links b{color:#E3E6EE;font-weight:600;}
+  .socials{display:flex;gap:10px;flex-wrap:wrap;}
+  .soc{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-dark);color:#C7CCDA;text-decoration:none !important;transition:background .15s,color .15s,border-color .15s;}
+  .soc:hover{background:var(--accent);border-color:var(--accent);color:#1B1305;}
+  .foot-legal{padding-top:22px;}
+  .foot-legal p{margin:0 0 16px;font-size:0.82rem;max-width:80ch;}
+  .foot-bottom{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:0.82rem;}
+  @media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;}.foot-brand{grid-column:1/-1;}}
+  @media(max-width:480px){.foot-grid{grid-template-columns:1fr;}}
+
+  /* ===== Hero de brand ===== */
+  header.brand-hero{position:relative;overflow:hidden;padding:92px 0 72px;}
+  header.brand-hero .wrap{position:relative;z-index:2;}
+  header.brand-hero h1.wordmark{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(3rem,9vw,5.4rem);line-height:1;margin:0 0 14px;max-width:none;letter-spacing:-0.01em;color:#fff;}
+  header.brand-hero h1.wordmark span{color:var(--accent);}
+  .tagline{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.15rem,2.6vw,1.6rem);color:var(--accent-soft);margin:0 0 22px;}
+  header.brand-hero p.lead{max-width:54ch;margin-bottom:28px;}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+  .hero-cta .btn{padding:14px 26px;font-size:1rem;}
+  .trust{list-style:none;display:flex;gap:10px 24px;flex-wrap:wrap;padding:0;margin:26px 0 0;color:#C7CCDA;font-size:0.88rem;}
+  .hero-who{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line-dark);color:#C7CCDA;text-decoration:none;font-size:0.9rem;}
+  .hero-who em{color:var(--accent-soft);font-style:normal;margin-left:6px;}
+  .hero-who:hover em{text-decoration:underline;}
+  .avs{display:inline-flex;}
+  .avs img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--ink);background:var(--ink-soft);}
+  .avs img + img{margin-left:-10px;}
+  .moon{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:min(34vw,360px);opacity:.9;z-index:1;pointer-events:none;}
+  .star{animation:twinkle 4s ease-in-out infinite;}
+  .star.s2{animation-delay:1.3s;} .star.s3{animation-delay:2.4s;}
+  @keyframes twinkle{0%,100%{opacity:.25;}50%{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){.star{animation:none;}}
+  @media(max-width:760px){.moon{width:200px;right:-30px;top:30px;transform:none;opacity:.45;}}
+  .mystats{background:var(--card);border-bottom:1px solid var(--line);padding:16px 0;}
+  .mystats .wrap{display:flex;align-items:center;gap:20px 36px;flex-wrap:wrap;}
+  .ms-title{font-size:0.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .mystats .hero-stat b{color:var(--ink);font-size:1.25rem;display:inline;margin-right:6px;}
+  .mystats .hero-stat span{color:var(--muted);font-size:0.82rem;}
+  .mystats .hero-stats{display:flex;gap:10px 32px;flex-wrap:wrap;}
+
+  /* ===== Articole ===== */
+  .articles{max-width:780px;}
+  details.article{background:var(--card);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;overflow:hidden;}
+  details.article[open]{border-color:var(--accent-soft);}
+  details.article summary{list-style:none;cursor:pointer;padding:16px 52px 16px 20px;position:relative;display:flex;flex-direction:column;gap:3px;}
+  details.article summary::-webkit-details-marker{display:none;}
+  details.article summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:1.4rem;transition:transform .2s;}
+  details.article[open] summary::after{transform:translateY(-50%) rotate(45deg);}
+  details.article summary:hover .a-title{color:var(--accent);}
+  .a-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;transition:color .15s;}
+  .a-meta{font-size:0.78rem;color:var(--muted);font-weight:500;}
+  .a-body{padding:2px 22px 22px;max-width:680px;}
+  .a-body p{margin:0 0 12px;}
+  .a-body h4{font-family:'Fraunces',serif;font-size:1rem;margin:18px 0 6px;}
+  .a-body ul,.a-body ol{padding-left:22px;margin:6px 0 14px;}
+  .a-body li{margin-bottom:7px;}
+  .art-foot{margin-top:18px;font-size:0.85rem;color:var(--muted);max-width:680px;}
+
+  /* ===== Comunitate ===== */
+  .community{text-align:left;}
+  .community h3{margin:12px 0 6px;font-size:1.2rem;font-weight:600;}
+  .community p{margin:0 0 16px;color:var(--muted);font-size:0.95rem;}
+  .c-ico{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;}
+  .c-ico.fb{background:#3B5998;} .c-ico.wa{background:var(--good);}
+  .btn.join{background:var(--ink);color:#F1EEE6;}
+  .btn.join:hover{background:var(--ink-soft);}
+  #comunitate .note{margin-top:20px;}
+
+  /* ===== Bunny on the moon ===== */
+  .bunny-body{transform-box:fill-box;transform-origin:50% 100%;animation:breathe 4s ease-in-out infinite;}
+  @keyframes breathe{0%,100%{transform:scale(1,1);}50%{transform:scale(1.015,1.07);}}
+  .z{opacity:0;animation:zfloat 4.8s ease-in-out infinite;}
+  .z2{animation-delay:1.6s;} .z3{animation-delay:3.2s;}
+  @keyframes zfloat{0%{opacity:0;transform:translate(0,0);}15%{opacity:.95;}100%{opacity:0;transform:translate(-14px,-34px);}}
+  .eye-open{opacity:0;animation:tryopen 9s ease-in-out infinite;}
+  .eye-closed{animation:tryclosed 9s ease-in-out infinite;}
+  @keyframes tryopen{0%,78%,92%,100%{opacity:0;}82%,88%{opacity:1;}}
+  @keyframes tryclosed{0%,78%,92%,100%{opacity:1;}82%,88%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .bunny-body,.eye-open,.eye-closed{animation:none;}
+    .z{animation:none;opacity:.8;}
+    .z1{transform:translate(-2px,-4px);} .z2{transform:translate(-8px,-16px);} .z3{transform:translate(-14px,-30px);}
+  }
+
+  .ear-front{transform-box:fill-box;transform-origin:0% 100%;animation:twitch 7s ease-in-out infinite;}
+  @keyframes twitch{0%,86%,100%{transform:rotate(0);}89%{transform:rotate(-5deg);}92%{transform:rotate(2deg);}95%{transform:rotate(0);}}
+  @media (prefers-reduced-motion: reduce){.ear-front{animation:none;}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a href="#acasa" class="brand">Psy<span>Insomnia</span></a>
+    <button id="navToggle" aria-label="Meniu">☰</button>
+    <div class="navlinks" id="navLinks">
+      <a href="#despre">Despre noi</a>
+      <a href="#isi">Evaluare</a>
+      <a href="#tehnici">Tehnici</a>
+      <a href="#articole">Articole</a>
+      <a href="#comunitate">Comunitate</a>
+      <a href="#resurse">Resurse</a>
+      <a href="#contact" class="cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="notice" id="noticeBar" hidden>
+  <div class="wrap" style="max-width:1040px;">
+    <span>Instrument educațional bazat pe CBT-I — nu înlocuiește evaluarea clinică. În situații de criză, sună la <b>112</b>.</span>
+    <button type="button" id="noticeOk" class="btn small ghost">Am înțeles</button>
+  </div>
+</div>
+
+<header class="hero brand-hero" id="acasa">
+  <svg class="moon" viewBox="0 0 220 220" aria-hidden="true">
+    <defs><radialGradient id="fur" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F0E8"/><stop offset="1" stop-color="#DCD3C2"/></radialGradient><radialGradient id="furHaunch" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#EFE9DD"/><stop offset="1" stop-color="#D3C9B6"/></radialGradient><linearGradient id="earIn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EFB9BC"/><stop offset="1" stop-color="#F7D9D6"/></linearGradient><mask id="crescent"><rect width="220" height="220" fill="#fff"/><circle cx="142" cy="88" r="68" fill="#000"/></mask></defs>
+    <circle cx="100" cy="112" r="76" fill="#E8D5AE" mask="url(#crescent)"/>
+    <g fill="#E8D5AE"><circle class="star" cx="168" cy="40" r="2.2"/><circle class="star s2" cx="196" cy="92" r="1.6"/><circle class="star s3" cx="150" cy="150" r="2"/><circle class="star s2" cx="30" cy="30" r="1.5"/><circle class="star" cx="205" cy="160" r="1.4"/></g>
+    <g class="bunny" aria-hidden="true" transform="translate(-9 -2) rotate(7 142 152)">
+      <g class="zzz" font-family="Fraunces, Georgia, serif" font-weight="600" fill="#E8D5AE">
+        <text class="z z1" x="110" y="134" font-size="9">z</text>
+        <text class="z z2" x="110" y="134" font-size="11">z</text>
+        <text class="z z3" x="110" y="134" font-size="13">Z</text>
+      </g>
+      <ellipse cx="139" cy="157.8" rx="26" ry="2.6" fill="#8B6B2A" opacity=".25"/>
+      <g class="bunny-body" stroke="#B3A07A" stroke-width=".6" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="171" cy="149" r="5.4" fill="url(#fur)"/>
+        <path d="M171 144.5c2.5 1 3.8 3.4 3.2 6M168 144c-1.6 1-2.4 2.6-2.2 4.4" fill="none" stroke="#D8CFBD" stroke-width=".7"/>
+        <path d="M115 153c-1-12 8-19 25-19 17 0 30 6.5 30 17 0 5.6-4 7.5-10 7.5h-38c-4.5 0-7-2.6-7-5.5z" fill="url(#fur)"/>
+        <ellipse cx="156" cy="147.5" rx="13" ry="10.5" fill="url(#furHaunch)"/>
+        <path d="M148 151c3-4 9-5 14-2" fill="none" stroke="#D2C8B4" stroke-width=".8"/>
+        <ellipse cx="150" cy="157" rx="9" ry="2.7" fill="url(#fur)"/>
+        <g fill="none" stroke="#D5CBB6" stroke-width=".7" opacity=".85">
+          <path d="M126 143c4-3 9-4 14-4"/><path d="M132 147c6-2 12-2 17 0"/><path d="M128 151c4-1 8-1 12 0"/>
+        </g>
+        <ellipse cx="112.5" cy="156.2" rx="5.2" ry="2.5" fill="url(#fur)"/>
+        <ellipse cx="119.5" cy="157" rx="5.2" ry="2.5" fill="url(#fur)"/>
+        <path d="M110 157.4v.01M113.6 157.5v.01" stroke="#C9BDA3" stroke-width=".8"/>
+        <path class="ear-back" d="M123 141c2-11 14-17 28-17-7 4-9 7-12 12-3 4-8 7-13 10z" fill="#E4DDCF"/>
+        <ellipse cx="122.5" cy="148" rx="11.2" ry="9.4" fill="url(#fur)"/>
+        <path d="M108 153c0-4 3-7 8-7s7 3 6 7c-1 3-4 4-7 4s-7-1-7-4z" fill="#FBF8F2" stroke="none"/>
+        <g class="ear-front">
+          <path d="M126 140c3-12 17-17 32-14-8 3-11 6-15 11-3 4-9 7-17 3z" fill="url(#fur)"/>
+          <path d="M129 139.5c3-7 11-11 20-10-5 3-8 6-10 9-2 2-6 3-10 1z" fill="url(#earIn)" stroke="none"/>
+        </g>
+        <path d="M108.2 151.4c1-1.2 2.6-1.2 3.4 0-.6 1.5-2.6 1.8-3.4 0z" fill="#E59AA3" stroke="none"/>
+        <path d="M108.8 153c.2 1.4 1.6 2.2 3.4 1.6" fill="none" stroke="#A98F68" stroke-width=".6"/>
+        <ellipse cx="118" cy="152.8" rx="2.6" ry="1.8" fill="#F4BDC0" opacity=".55" stroke="none"/>
+        <g class="eye-closed" fill="none" stroke="#1B1F2E" stroke-linecap="round">
+          <path d="M115.6 146.6q3.2 3 6.6.2" stroke-width="1.3"/>
+          <path d="M115.6 146.8l-1.6-1M118.4 148.1l-.4-1.7M121.2 147.4l.8-1.6" stroke-width=".7"/>
+        </g>
+        <g class="eye-open" stroke="none">
+          <ellipse cx="118.8" cy="147.2" rx="2.6" ry="2.3" fill="#1B1F2E"/>
+          <circle cx="118" cy="146.4" r=".8" fill="#fff"/>
+          <path d="M115.8 145.5q3-2.8 6 0" fill="none" stroke="#1B1F2E" stroke-width=".8"/>
+        </g>
+        <g stroke="#8D7440" stroke-width=".45" opacity=".6" fill="none">
+          <path d="M110 152.4q-6-1.6-11-.2M110.4 153.6q-6 .4-10.5 2.6M110 151.2q-5-3-9.5-3.2"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow-line"></div>
+    <h1 class="wordmark">Psy<span>Insomnia</span></h1>
+    <p class="tagline">The Psychology of Better Sleep</p>
+    <p class="lead">Înțelege de ce nu dormi și recapătă somnul prin metode psihologice bazate pe dovezi. CBT-I, tratamentul recomandat de prim rang pentru insomnie, într-un singur loc.</p>
+    <div class="hero-cta">
+      <a href="#isi" class="btn">Fă testul gratuit (2 minute)</a>
+      <a href="#contact" class="btn secondary">Programează o consultație</a>
+    </div>
+    <ul class="trust">
+      <li>✓ Creat de psihologi clinicieni</li>
+      <li>✓ Bazat pe CBT-I</li>
+      <li>✓ Datele rămân doar la tine</li>
+    </ul>
+    <a href="#despre" class="hero-who" aria-label="Cunoaște specialiștii">
+      <span class="avs"><img id="heroAv1" alt="" width="40" height="40"><img id="heroAv2" alt="" width="40" height="40"></span>
+      <span>Alex Simion &amp; Silvana Capris <em>→ cunoaște echipa</em></span>
+    </a>
+  </div>
+</header>
+
+<section class="alt" id="despre">
+  <div class="wrap">
+    <p class="kicker">Despre noi</p>
+    <h2 class="title">Cine stă în spatele PsyInsomnia</h2>
+    <p class="dek">Doi specialiști în psihologie, cu un scop comun: ca somnul să fie înțeles, nu doar îndurat.</p>
+
+    <div class="mission">
+      <p class="kicker">PsyInsomnia · The Psychology of Better Sleep</p>
+      <h3>Misiune</h3>
+      <p>Prevenție prin psihoeducație. Te ajutăm să gestionezi insomnia prin metode psihologice — terapie CBT-I și nu numai.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card person">
+        <div class="person-head"><img class="photo" src="data:image/jpeg;base64,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" alt="Silvana Capris" width="96" height="96"><div><h3>Silvana Capris</h3><p class="role">Psiholog clinician specialist · antrenor de creier</p></div></div>
+        <p>Psiholog clinician specialist și antrenor de creier, cu 29 de ani de experiență și formări în psihoterapii scurte și hipnoterapie cognitiv-comportamentală. Te ajut să înțelegi felul în care mintea ta răspunde la stres și ce tipare de gândire și reacție îți întrețin neliniștea. În acest program, lucrăm practic asupra reglării emoționale și a capacității de a te desprinde de agitația zilei, pentru a susține trecerea către odihnă.</p>
+      </div>
+      <div class="card person" style="margin-top:0;">
+        <div class="person-head"><img class="photo" src="data:image/jpeg;base64,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" alt="Alex Simion" width="96" height="96"><div><h3>Alex Simion</h3><p class="role">Psiholog clinician · psihoterapeut integrativ</p></div></div>
+        <p>Psiholog clinician și psihoterapeut integrativ, cu experiență în evaluarea și intervenția psihologică. Folosesc abordări bazate pe dovezi și, având un background de IT, dezvolt instrumente practice pentru sănătatea mintală, inclusiv intervenții cognitiv-comportamentale pentru insomnie (CBT-I).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flow" id="flow">
+  <div class="wrap" style="max-width:1040px;">
+    <h2>Cum folosești protocolul</h2>
+    <p class="sub">Patru pași, în ordine. Pagina îți arată automat unde ești și care e următorul pas.</p>
+    <div class="steps" id="steps">
+      <a class="step" href="#isi" data-step="1"><span class="n">1</span><b>Evaluează-te (ISI)</b><span class="s">7 întrebări, ~2 minute</span></a>
+      <a class="step" href="#jurnal" data-step="2"><span class="n">2</span><b>Completează jurnalul</b><span class="s">În fiecare dimineață, minimum 7 nopți</span></a>
+      <a class="step" href="#calculator" data-step="3"><span class="n">3</span><b>Calculează fereastra de somn</b><span class="s">Necesită minimum 3 nopți în jurnal</span></a>
+      <a class="step" href="#progres" data-step="4"><span class="n">4</span><b>Urmărește progresul</b><span class="s">Repetă ISI săptămânal</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="profilebar" id="instrument">
+  <div class="wrap profilebar-inner">
+    <label for="profileSelect">Profil</label>
+    <select id="profileSelect"></select>
+    <details class="profile-menu">
+      <summary>Gestionează profilurile</summary>
+      <div class="profile-actions">
+        <button class="btn ghost small" id="btnNewProfile" type="button">+ Profil nou</button>
+        <button class="btn ghost small" id="btnRenameProfile" type="button">Redenumește</button>
+        <button class="btn danger small" id="btnDeleteProfile" type="button">Șterge profilul</button>
+      </div>
+    </details>
+    <span class="privacy-chip">🔒 Datele rămân doar în acest browser</span>
+  </div>
+  <details class="privacy-note">
+    <summary>Despre datele tale și copia de siguranță</summary>
+    <p>Datele fiecărui profil sunt salvate local, doar în acest browser și pe acest dispozitiv — nu sunt trimise către niciun server. Schimbarea browserului sau ștergerea datelor de navigare le pierde definitiv, așa că folosește <b>Export</b> (în secțiunea Jurnal) pentru o copie de siguranță.</p>
+  </details>
+</div>
+
+<div class="mystats">
+  <div class="wrap" style="max-width:1040px;">
+    <span class="ms-title">Rezumatul tău</span>
+    <div class="hero-stats" style="margin:0;border:0;padding:0;">
+      <div class="hero-stat"><b id="statEntries">0</b><span>nopți înregistrate</span></div>
+      <div class="hero-stat"><b id="statSE">—</b><span>eficiență de somn, medie 7 zile</span></div>
+      <div class="hero-stat"><b id="statISI">—</b><span>ultimul scor ISI</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="isi">
+  <div class="wrap">
+    <p class="kicker">Evaluare</p>
+    <h2 class="title">Indicele de Severitate a Insomniei (ISI)</h2>
+    <p class="dek">7 întrebări, răspuns de la 0 la 4. Completează-l acum și repetă-l săptămânal — evoluția se vede în secțiunea Progres.</p>
+    <button type="button" class="btn isi-toggle" id="isiToggle" aria-expanded="false" aria-controls="isiBody"><span id="isiToggleLabel">Începe evaluarea</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div id="isiBody" hidden>
+      <div class="card" id="isiForm"></div>
+      <div class="isi-result" id="isiResult" style="display:none;"></div>
+      <p class="help-note">Un scor ridicat sau simptome care persistă merită discutate cu un specialist. <a href="#contact">Vezi cum poți programa o consultație</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="jurnal">
+  <div class="wrap">
+    <p class="kicker">Zilnic</p>
+    <h2 class="title">Jurnal de somn</h2>
+    <p class="dek">Completează în fiecare dimineață, cât mai curând după trezire. Pe baza acestor date se calculează timpul în pat (TIB), timpul total de somn (TST) și eficiența somnului (SE).</p>
+    <button type="button" class="btn sec-toggle" data-target="jurnalBody" data-open="Deschide jurnalul" data-close="Ascunde jurnalul" aria-expanded="false" aria-controls="jurnalBody"><span class="lbl">Deschide jurnalul</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div class="sec-body" id="jurnalBody" hidden>
+
+    <div class="card">
+      <div class="editing-flag" id="editingFlag">Editezi o noapte deja salvată — la salvare, intrarea existentă va fi actualizată.</div>
+      <form id="diaryForm">
+        <div class="field-row">
+          <div class="field"><label for="d_date">Data</label><input type="date" id="d_date" required=""></div>
+          <div class="field"><label for="d_bed">Ora culcării</label><input type="time" id="d_bed" required=""></div>
+          <div class="field"><label for="d_latency">Latență adormire (min)</label><input type="number" id="d_latency" min="0" max="600" required=""></div>
+          <div class="field"><label for="d_awake">Timp treaz peste noapte (min)</label><input type="number" id="d_awake" min="0" max="600" required=""></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="d_finalwake">Ora trezirii finale</label><input type="time" id="d_finalwake" required=""></div>
+          <div class="field"><label for="d_up">Ora ridicării din pat</label><input type="time" id="d_up" required=""></div>
+          <div class="field"><label for="d_quality">Calitate somn (1–5)</label>
+            <select id="d_quality">
+              <option value="1">1 — foarte proastă</option>
+              <option value="2">2 — proastă</option>
+              <option value="3" selected="">3 — medie</option>
+              <option value="4">4 — bună</option>
+              <option value="5">5 — foarte bună</option>
+            </select>
+          </div>
+          <div class="field"><label for="d_nap">Somn de zi (min)</label><input type="number" id="d_nap" min="0" max="300" value="0"></div>
+        </div>
+        <div class="field">
+          <label for="d_note">Notă (opțional — ex: călătorie, boală, eveniment care ar putea explica o noapte atipică)</label>
+          <textarea id="d_note" maxlength="200" rows="2"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn" id="diarySubmitBtn">Salvează noaptea</button>
+          <button type="button" class="btn ghost" id="diaryCancelEdit" style="display:none;">Anulează editarea</button>
+        </div>
+      </form>
+
+      <div class="data-tools">
+        <button class="btn ghost small" id="btnExportJson" type="button">Exportă toate datele (JSON)</button>
+        <button class="btn ghost small" id="btnExportCsv" type="button">Exportă jurnalul (CSV)</button>
+        <button class="btn ghost small" id="btnImportJson" type="button">Importă date (JSON)</button>
+        <input type="file" id="importFileInput" accept="application/json" class="visually-hidden">
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;">
+      <div class="table-scroll">
+        <table id="diaryTable">
+          <thead>
+            <tr><th>Data</th><th>Culcare→Ridicare</th><th>TIB</th><th>TST</th><th>SE</th><th>Calitate</th><th>Somn zi</th><th>Notă</th><th></th></tr>
+          </thead>
+          <tbody id="diaryBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="diaryEmpty">Niciun jurnal salvat încă — completează formularul de mai sus pentru prima noapte.</div>
+    </div>
+      </div>
+  </div>
+</section>
+
+<section id="calculator">
+  <div class="wrap">
+    <p class="kicker">Restricție de somn</p>
+    <h2 class="title">Calculator TIB / Sleep Efficiency</h2>
+    <p class="dek">Se recalculează automat pe baza mediei ultimelor nopți din jurnal, conform algoritmului Spielman. Ai nevoie de minimum 3 nopți înregistrate (ideal 7–14).</p>
+    <button type="button" class="btn sec-toggle" data-target="calculatorBody" data-open="Deschide calculatorul" data-close="Ascunde calculatorul" aria-expanded="false" aria-controls="calculatorBody"><span class="lbl">Deschide calculatorul</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div class="sec-body" id="calculatorBody" hidden>
+
+    <div class="disclaimer"><b>Înainte să începi:</b> restricția de somn nu este potrivită pentru toată lumea. Dacă ai epilepsie, tulburare bipolară, apnee de somn netratată sau conduci frecvent și ești expus riscului de somnolență, discută mai întâi cu medicul sau cu un specialist.</div>
+
+    <div class="card">
+      <div class="field-row" style="grid-template-columns:1fr 1fr;">
+        <div class="field"><label for="c_wake">Ora de trezire fixă dorită</label><input type="time" id="c_wake" value="07:00"></div>
+        <div class="field"><label for="c_window">Fereastră de calcul</label>
+          <select id="c_window">
+            <option value="7">Ultimele 7 nopți</option>
+            <option value="14">Ultimele 14 nopți</option>
+            <option value="30">Ultimele 30 nopți</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="calcBtn" type="button">Recalculează acum</button>
+
+      <div id="calcResult" style="display:none;">
+        <div class="calc-out">
+          <div class="calc-box"><b id="c_avgTST">—</b><span>TST mediu (h)</span></div>
+          <div class="calc-box"><b id="c_avgSE">—</b><span>SE medie</span></div>
+          <div class="calc-box"><b id="c_tib">—</b><span>TIB recomandat</span></div>
+        </div>
+        <div class="calc-box" style="margin-top:14px;">
+          <span>Orar recomandat</span>
+          <b id="c_schedule" style="font-size:1.15rem;">—</b>
+        </div>
+        <div class="note" id="c_decision"></div>
+      </div>
+      <div class="empty" id="calcEmpty">Adaugă cel puțin 3 nopți în jurnal pentru a calcula o recomandare.</div>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <p style="font-weight:600;margin:0 0 12px;">Regula de ajustare săptămânală</p>
+      <div class="table-scroll">
+        <table class="se-table">
+          <thead><tr><th>Sleep Efficiency</th><th>Decizie</th><th>Observație</th></tr></thead>
+          <tbody id="seRuleTable">
+            <tr data-rule="high"><td>SE ≥ 90%</td><td>Crește TIB cu 15–20 min</td><td>Somnul s-a consolidat</td></tr>
+            <tr data-rule="mid"><td>SE 85–89%</td><td>Menține TIB neschimbat</td><td>Se așteaptă încă o săptămână de date</td></tr>
+            <tr data-rule="low"><td>SE &lt; 85%</td><td>Scade TIB cu 15–20 min</td><td>Niciodată sub 5–5,5 ore</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      </div>
+  </div>
+</section>
+
+<section class="alt" id="progres">
+  <div class="wrap">
+    <p class="kicker">Evoluție</p>
+    <h2 class="title">Progres în timp</h2>
+    <p class="dek">Scorul ISI ar trebui să scadă, iar eficiența somnului să crească și să se stabilizeze peste 85–90%, pe măsură ce protocolul avansează.</p>
+    <button type="button" class="btn sec-toggle" data-target="progresBody" data-open="Vezi progresul" data-close="Ascunde progresul" aria-expanded="false" aria-controls="progresBody"><span class="lbl">Vezi progresul</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div class="sec-body" id="progresBody" hidden>
+    <div class="grid2">
+      <div class="chart-wrap">
+        <p style="font-weight:600;margin:0 0 14px;">Scor ISI</p>
+        <canvas id="isiChart" height="220"></canvas>
+        <div class="empty" id="isiChartEmpty">Completează chestionarul ISI pentru a vedea evoluția.</div>
+      </div>
+      <div class="chart-wrap">
+        <p style="font-weight:600;margin:0 0 14px;">Sleep Efficiency pe noapte</p>
+        <canvas id="seChart" height="220"></canvas>
+        <div class="empty" id="seChartEmpty">Completează jurnalul de somn pentru a vedea evoluția.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <p style="font-weight:600;margin:0 0 4px;">Comparație — început vs acum</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0;">Primele intrări comparate cu cele mai recente, pentru a vedea evoluția reală a protocolului.</p>
+      <div class="compare-grid">
+        <div class="compare-box">
+          <p class="label">Scor ISI — primul vs ultimul</p>
+          <div class="compare-nums" id="cmpIsiNums">— <span class="arrow">→</span> —</div>
+          <div class="compare-delta" id="cmpIsiDelta"></div>
+        </div>
+        <div class="compare-box">
+          <p class="label">Sleep Efficiency medie — prima jumătate vs ultima</p>
+          <div class="compare-nums" id="cmpSeNums">— <span class="arrow">→</span> —</div>
+          <div class="compare-delta" id="cmpSeDelta"></div>
+        </div>
+      </div>
+    </div>
+      </div>
+  </div>
+</section>
+
+<section class="cta-band" style="padding:48px 0;border-bottom:1px solid var(--line-dark);">
+  <div class="wrap">
+    <div>
+      <h2>Vrei sprijin personalizat?</h2>
+      <p>Instrumentul te ajută să te monitorizezi, dar progresul e mai sigur cu un specialist alături. Scrie-ne și alegem împreună pașii.</p>
+    </div>
+    <a href="#contact" class="btn">Programează o consultație</a>
+  </div>
+</section>
+
+<section id="tehnici">
+  <div class="wrap">
+    <p class="kicker">Referință</p>
+    <h2 class="title">Tehnicile protocolului</h2>
+    <p class="dek">Cele patru componente active ale CBT-I, plus adjuvantele. Deschide fiecare secțiune pentru detalii.</p>
+    <button type="button" class="btn sec-toggle" data-target="tehniciBody" data-open="Vezi tehnicile" data-close="Ascunde tehnicile" aria-expanded="false" aria-controls="tehniciBody"><span class="lbl">Vezi tehnicile</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div class="sec-body" id="tehniciBody" hidden>
+    <div id="accordion"></div>
+      </div>
+  </div>
+</section>
+
+<section class="alt" id="articole">
+  <div class="wrap">
+    <p class="kicker">Articole</p>
+    <h2 class="title">Învață despre somn și insomnie</h2>
+    <p class="dek">Ghiduri scurte, în limba română, bazate pe CBT-I. Deschide articolul care te interesează.</p>
+    <div class="articles">
+      <details class="article" id="art-ghid">
+        <summary><span class="a-title">Cum să scapi de insomnie: ghidul pe scurt</span><span class="a-meta">Ghid · 4 min</span></summary>
+        <div class="a-body"><p>Insomnia înseamnă dificultate de a adormi, treziri repetate în timpul nopții sau dificultate de a readormi după ce te-ai trezit. Poate fi <b>temporară</b> (câteva zile), <b>acută</b> (câteva săptămâni, adesea legată de stres sau de schimbări) sau <b>cronică</b> (luni sau ani).</p><p>Un traseu realist, în ordine:</p><ol><li><b>Înțelege-ți somnul.</b> Ține un jurnal timp de 1–2 săptămâni: când adormi, când te trezești, când te ridici.</li><li><b>Fixează ora de trezire</b> și respect-o și în weekend.</li><li><b>Aplică tehnicile CBT-I</b>: restricția somnului, controlul stimulilor, timp alocat grijilor, restructurarea gândurilor.</li><li><b>Ajustează igiena somnului</b>: lumină, temperatură, cafeină, ecrane, cină.</li><li><b>Cere ajutor</b> dacă problema persistă sau îți afectează ziua.</li></ol><p>Pentru orice metodă contează consecvența. Nu orice tehnică se potrivește oricui: alege una care ți se pare acceptabilă și încearc-o cel puțin o săptămână înainte să o abandonezi.</p></div>
+      </details>
+      <details class="article" id="art-cauze">
+        <summary><span class="a-title">Tipuri și cauze ale insomniei</span><span class="a-meta">Educație · 4 min</span></summary>
+        <div class="a-body"><p>Insomnia are rareori o singură cauză. De obicei se adună mai mulți factori:</p><ul><li><b>Schimbări de viață</b> — mutare, job nou, fus orar, căsătorie, divorț (așa-numita „insomnie de ajustare”).</li><li><b>Factori psihologici</b> — stres (inclusiv stresul că nu vei dormi), anxietate anticipativă, depresie, burnout, stres posttraumatic.</li><li><b>Afecțiuni medicale</b> — dureri cronice, probleme respiratorii, sindromul picioarelor neliniștite, tulburări hormonale, boli cardiace și altele.</li><li><b>Medicamente</b> — unele antidepresive, tratamente pentru hipertensiune, ADHD, astm sau steroizi pot afecta somnul.</li><li><b>Substanțe</b> — cafeina, alcoolul (pare că ajută la adormit, dar strică calitatea somnului), drogurile.</li><li><b>Mediu</b> — lumină puternică, zgomot, partener care sforăie, temperaturi extreme.</li><li><b>Obiceiuri</b> — munca în pat, mese sau lichide multe înainte de culcare, încercarea de a adormi mai devreme decât e corpul pregătit.</li><li><b>Vârsta</b> — persoanele peste 60 de ani sunt mai afectate.</li></ul><p>Dacă bănuiești o cauză medicală sau un efect secundar al unui medicament, discută cu medicul înainte de a schimba ceva.</p></div>
+      </details>
+      <details class="article" id="art-simptome">
+        <summary><span class="a-title">Simptomele insomniei: cum îți afectează ziua</span><span class="a-meta">Educație · 2 min</span></summary>
+        <div class="a-body"><p>Insomnia nu se vede doar noaptea. Cele mai frecvente efecte din timpul zilei:</p><ul><li>oboseală, energie scăzută, somn agitat</li><li>iritabilitate și schimbări de dispoziție</li><li>dificultăți de concentrare și probleme de memorie</li><li>reacții întârziate și probleme de coordonare</li><li>dureri de cap, probleme digestive</li><li>anxietate sau stare depresivă</li></ul><p>Dacă recunoști mai multe dintre ele și durează de săptămâni, completează chestionarul ISI din această pagină și discută rezultatul cu un specialist.</p></div>
+      </details>
+      <details class="article" id="art-intrebari">
+        <summary><span class="a-title">Întrebări care te ajută să descoperi sursa insomniei</span><span class="a-meta">Autoevaluare · 4 min</span></summary>
+        <div class="a-body"><p>Înainte de orice tehnică, merită să înțelegi ce întreține problema. Răspunde-ți sincer, de preferință în scris:</p><h4>Cum a început?</h4><ul><li>Când a început insomnia și ce s-a schimbat atunci?</li><li>Ce factori de stres au apărut?</li><li>Ce gânduri apar când nu poți dormi?</li></ul><h4>Cum arată ziua ta?</h4><ul><li>Ce faci înainte de culcare (telefon, laptop, televizor, citit)?</li><li>Ai ore regulate de somn? Ce se schimbă în weekend?</li><li>Faci mișcare? Când? (dimineața e de preferat)</li><li>Cât alcool, cafea și dulciuri consumi? Ieși la lumină naturală?</li></ul><h4>Ce te-ar putea influența?</h4><ul><li>Sforăi sau dormi lângă cineva care sforăie? Ai probleme de respirație pe nas sau gură?</li><li>Scrâșnești din dinți (bruxism)?</li><li>Ai afecțiuni medicale sau stări emoționale dificile? Mediul tău social e stresant?</li></ul><h4>Cum arată igiena somnului?</h4><ul><li>Ce pernă folosești și cât de confortabil ești în pat?</li><li>Ce temperatură e în cameră? (puțin mai rece decât ești obișnuit)</li><li>Dormi și ziua? Cât dormi în total?</li></ul><h4>Ce ai încercat deja?</h4><ul><li>Ce tratamente sau somnifere ai folosit?</li><li>Ai încercat psihoterapie (CBT, CBT-I, hipnoterapie)?</li></ul></div>
+      </details>
+      <details class="article" id="art-cbti">
+        <summary><span class="a-title">CBT-I: terapia cognitiv-comportamentală pentru insomnie</span><span class="a-meta">Terapie · 5 min</span></summary>
+        <div class="a-body"><p>CBT-I este abordarea recomandată de prim rang pentru insomnia cronică. Durează de obicei <b>4–8 săptămâni</b> și combină mai multe tehnici:</p><ul><li><b>Jurnalul somnului</b> — baza de la care pornește totul (îl găsești în această pagină).</li><li><b>Restricția somnului</b> — în prima săptămână dormi doar când simți că adormi cu adevărat, chiar dacă ora e târzie, și te trezești la oră fixă. Apoi muți ora de culcare mai devreme cu 15–30 de minute, treptat. Nu se potrivește tuturor, deci se face de preferință cu un specialist.</li><li><b>Controlul stimulilor</b> — patul e doar pentru somn. Dacă nu adormi în aproximativ 20 de minute, ridică-te și fă ceva liniștitor.</li><li><b>Timp alocat grijilor</b> — petreci 20 de minute cu grijile (într-un „jurnal de griji”), apoi te oprești voluntar. Dacă ele apar noaptea, le notezi și le lași pentru a doua zi.</li><li><b>Restructurare cognitivă</b> — înlocuiești gândurile catastrofice cu unele realiste: din „trebuie să dorm 8 ore” în „dorm cât are nevoie corpul”.</li><li><b>Relaxare</b> — relaxare musculară progresivă, respirație, meditație ghidată.</li></ul><p>Mai multe resurse: <a href="https://www.selfhelptoons.com/learn-to-sleep-better-with-cbt-for-insomnia-cbti/" target="_blank" rel="noopener">Learn to Sleep Better with CBT for Insomnia</a>.</p></div>
+      </details>
+      <details class="article" id="art-relaxare">
+        <summary><span class="a-title">Tehnici rapide pentru nopțile grele</span><span class="a-meta">Practic · 3 min</span></summary>
+        <div class="a-body"><p>Când ești în pat și mintea nu se oprește, aceste tehnici pot ajuta:</p><ul><li><b>Metoda 4-7-8:</b> inspiră pe nas 4 secunde, ține respirația 7 secunde, expiră 8 secunde pe gură, cu un suierat ușor. Repetă de 4 ori.</li><li><b>Relaxare musculară progresivă:</b> încordezi, apoi relaxezi pe rând grupele de mușchi, de la picioare spre față.</li><li><b>Clipitul continuu:</b> clipești încontinuu câteva minute; la un moment dat pleoapele devin grele și e mai ușor să ții ochii închiși.</li><li><b>Meditație ghidată sau mindfulness:</b> îți mută atenția de la gânduri la respirație și senzații.</li><li><b>Activitate plictisitoare:</b> o carte sau un serial pe care le știi deja, ascultate cu ochii închiși.</li><li><b>Sunete de fundal:</b> muzică liniștită, ploaie, cascadă, zgomot alb.</li></ul><p>Resurse audio: <a href="https://www.youtube.com/playlist?list=PL_8HZcHpwRcosWfTcknd364QlLXuilvG3" target="_blank" rel="noopener">playlist insomnie</a> · <a href="https://www.youtube.com/playlist?list=PL_8HZcHpwRcrVD96fNmwF4-UO7eZXD_xp" target="_blank" rel="noopener">muzică de fundal</a>.</p></div>
+      </details>
+      <details class="article" id="art-igiena">
+        <summary><span class="a-title">Igiena somnului: obiceiuri de zi și de seară</span><span class="a-meta">Obiceiuri · 4 min</span></summary>
+        <div class="a-body"><h4>Pe parcursul zilei</h4><ul><li>Fă pauze reale: la prânz, pleacă de lângă calculator și de lângă telefon.</li><li>După muncă, desparte clar timpul de lucru de cel personal: plimbare, relaxare.</li><li>Mișcare în fiecare zi, de preferat dimineața și la lumină naturală; evită efortul intens seara târziu.</li><li>Menține un program constant de somn, inclusiv în weekend.</li><li>Urmărește ceasul biologic: lumină ziua, întuneric noaptea.</li></ul><h4>Seara</h4><ul><li>Încetinește ritmul cu 30–60 de minute înainte de culcare.</li><li>Fă ceva care te relaxează, orice obicei liniștitor pe care îl ai deja.</li><li>Pune-te în pat doar când ți se face somn, nu doar pentru că „e ora”.</li><li>Folosește perdele blackout și păstrează camera mai răcoroasă.</li><li>Dacă încep grijile, notează-le pe o foaie și spune-ți că le analizezi mâine.</li></ul><h4>Dacă nu adormi</h4><p>După aproximativ 20 de minute ridică-te și fă ceva liniștitor, la lumină slabă. Revino în pat doar când ți se face somn. Dimineața, trezește-te la ora fixă, chiar dacă ai dormit prost.</p></div>
+      </details>
+      <details class="article" id="art-alimentatie">
+        <summary><span class="a-title">Alimentație și somn: ce merită știut</span><span class="a-meta">Obiceiuri · 2 min</span></summary>
+        <div class="a-body"><p>Alimentația nu vindecă insomnia, dar poate o îmbunătăți sau o agrava:</p><ul><li>Cină ușoară și devreme, cu 3–4 ore înainte de culcare; mesele grele îngreunează digestia.</li><li>Evită alcoolul: la început pare că ajută, dar fragmentează somnul.</li><li>Limitează cafeaua și celelalte surse de cafeină, mai ales după-amiaza.</li><li>Nu bea cantități mari de apă înainte de culcare, ca să eviți trezirile pentru baie.</li><li>Un ceai de lavandă sau mușețel poate face parte dintr-un ritual de seară.</li><li>Kiwi, migdale, lapte și cireșe sunt des asociate cu un somn mai bun; efectul e modest și nu înlocuiește terapia.</li></ul></div>
+      </details>
+      <details class="article" id="art-personal">
+        <summary><span class="a-title">Ce funcționează pentru mine: obiceiuri personale</span><span class="a-meta">De Alex Simion · 2 min</span></summary>
+        <div class="a-body"><p>Nu orice funcționează pentru toată lumea, dar iată ce folosesc eu și mi se potrivește:</p><ul><li>Ascult seriale pe care le știu deja, cu ochii închiși.</li><li>Încetinesc ritmul cu 30–60 de minute înainte de somn.</li><li>Citesc sau ascult un audiobook ori o meditație ghidată.</li><li>Mă așez în pat doar când mi se face somn și păstrez un interval constant de somn.</li><li>Fac mișcare dimineața, niciodată seara după ora 21.</li><li>Nu mai mănânc după 20–21.</li><li>Țin camera între 22 și 25 °C.</li><li>Dacă nu adorm, ascult ceva liniștitor sau mă ridic și caut o activitate relaxantă.</li><li>Rămân ocupat în timpul zilei, cu o pauză între muncă și timpul personal.</li></ul></div>
+      </details>
+      <details class="article" id="art-ajutor">
+        <summary><span class="a-title">Când să ceri ajutor de specialitate</span><span class="a-meta">Orientare · 2 min</span></summary>
+        <div class="a-body"><p>Merită să te adresezi unui specialist dacă:</p><ul><li>insomnia durează de câteva săptămâni și nu se ameliorează</li><li>îți afectează munca, relațiile sau starea emoțională</li><li>sforăi puternic, ai pauze de respirație sau te trezești cu gura uscată și dureri de cap (posibile probleme respiratorii în somn)</li><li>te simți mereu anxios sau trist</li><li>iei medicamente care ți-ar putea afecta somnul</li></ul><p><b>Medicamentele</b> (somnifere, melatonină, antihistaminice, anxiolitice, antidepresive) se discută întotdeauna cu medicul, nu se încep pe cont propriu.</p><p>Psihoterapia, în special CBT-I, tratează cauzele menținerii insomniei, nu doar simptomele. <a href="#contact">Scrie-ne pentru o programare</a>.</p></div>
+      </details>
+    </div>
+    <p class="art-foot">Conținut educațional, care nu înlocuiește consultul medical sau psihologic. Mai multe articole: <a href="https://www.psyalexsimion.com/articole" target="_blank" rel="noopener">psyalexsimion.com/articole</a>.</p>
+  </div>
+</section>
+
+<section id="comunitate">
+  <div class="wrap">
+    <p class="kicker">Comunitate</p>
+    <h2 class="title">Nu ești singur în nopțile nedormite</h2>
+    <p class="dek">Alătură-te comunității PsyInsomnia: un loc sigur să schimbi experiențe, să primești resurse noi și să rămâi consecvent cu protocolul.</p>
+    <div class="grid2">
+      <div class="card community">
+        <div class="c-ico fb"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></div>
+        <h3>Grup de Facebook</h3>
+        <p>Postări educaționale, discuții între membri, anunțuri despre workshopuri și materiale noi.</p>
+        <a class="btn join" id="joinFb" data-url="" data-wa-text="Bună! Aș dori să mă alătur grupului de Facebook PsyInsomnia." href="#" target="_blank" rel="noopener">Alătură-te grupului</a>
+      </div>
+      <div class="card community" style="margin-top:0;">
+        <div class="c-ico wa"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zM20.52 3.45A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.42-8.46z"/></svg></div>
+        <h3>Grup de WhatsApp</h3>
+        <p>Un grup mai restrâns, pentru sprijin zilnic, mementouri și întrebări rapide.</p>
+        <a class="btn join" id="joinWa" data-url="" data-wa-text="Bună! Aș dori să mă alătur grupului de WhatsApp PsyInsomnia." href="#" target="_blank" rel="noopener">Alătură-te grupului</a>
+      </div>
+    </div>
+    <div class="note" style="max-width:680px;">
+      <b>Reguli simple:</b> respect și confidențialitate, fără sfaturi medicale între membri și fără schimb de date personale sensibile. Comunitatea oferă sprijin și educație, nu înlocuiește terapia. În situații de criză, sună la 112.
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="resurse">
+  <div class="wrap">
+    <p class="kicker">Resurse</p>
+    <h2 class="title">Materiale recomandate</h2>
+    <p class="dek">Videoclipuri și ghiduri selectate, care completează protocolul și te ajută să înțelegi mai bine somnul.</p>
+    <button type="button" class="btn sec-toggle" data-target="resurseBody" data-open="Vezi resursele" data-close="Ascunde resursele" aria-expanded="false" aria-controls="resurseBody"><span class="lbl">Vezi resursele</span> <span class="chev" aria-hidden="true">▾</span></button>
+    <div class="sec-body" id="resurseBody" hidden>
+
+    <div class="video-grid">
+    <a class="video" href="https://www.youtube.com/watch?v=0b3VadMr7HI" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/0b3VadMr7HI/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=JiD72cZ5mcU" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/JiD72cZ5mcU/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=O14QcVg38FA" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/O14QcVg38FA/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=Us8n8VBQn_c" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/Us8n8VBQn_c/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=y1qBsNIGSY0" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/y1qBsNIGSY0/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    </div>
+
+    <div class="res-links">
+      <a class="res-link" href="https://www.drorma.com/free-guide" target="_blank" rel="noopener">
+        <b>Ghid gratuit — Dr. Orma</b>
+        <span>Ghid descărcabil, util ca lectură complementară.</span>
+      </a>
+      <a class="res-link" href="https://link.thediaryofaceo.com/EqV6qH3" target="_blank" rel="noopener">
+        <b>The Diary of a CEO</b>
+        <span>Resursă recomandată, în limba engleză.</span>
+      </a>
+    </div>
+      </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="kicker">Contact</p>
+    <h2 class="title">Hai să vorbim</h2>
+    <p class="dek">Pentru întrebări, programări sau colaborări, ne poți scrie pe oricare dintre canalele de mai jos.</p>
+
+    <div class="grid2">
+      <div class="card contact-card">
+        <h3>Alex Simion</h3>
+        <ul class="contact-list">
+          <li><span class="lbl">Email</span><a href="mailto:psyalexsimion@gmail.com">psyalexsimion@gmail.com</a></li>
+          <li><span class="lbl">Telefon</span><a href="tel:+40749255366">+40 749 255 366</a></li>
+          <li><span class="lbl">Website</span><a href="https://www.psyalexsimion.com" target="_blank" rel="noopener">www.psyalexsimion.com</a></li>
+          <li><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/simionalexandrumihail/" target="_blank" rel="noopener">Alexandru Mihail Simion</a></li>
+          <li><span class="lbl">Facebook</span><a href="https://www.facebook.com/PsyAlexSimion" target="_blank" rel="noopener">PsyAlexSimion</a></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn wa small" href="https://wa.me/40749255366" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn ghost small" href="mailto:psyalexsimion@gmail.com">Trimite email</a>
+        </div>
+      </div>
+      <div class="card contact-card" style="margin-top:0;">
+        <h3>Silvana Capris</h3>
+        <ul class="contact-list">
+          <li><span class="lbl">Email</span><a href="mailto:hello@antrenordecreier.ro">hello@antrenordecreier.ro</a></li>
+          <li><span class="lbl">Telefon</span><a href="tel:+40744603217">+40 744 603 217</a></li>
+          <li><span class="lbl">Website</span><a href="https://antrenordecreier.ro/" target="_blank" rel="noopener">antrenordecreier.ro</a></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn wa small" href="https://wa.me/40744603217" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn ghost small" href="mailto:hello@antrenordecreier.ro">Trimite email</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card booking">
+      <h3>Programări</h3>
+      <p style="margin:0;color:var(--muted);">Alege specialistul cu care vrei să lucrezi și scrie-ne direct:</p>
+      <ul>
+        <li><b>Silvana Capris</b> — prin WhatsApp</li>
+        <li><b>Alex Simion</b> — prin WhatsApp sau email</li>
+      </ul>
+      <div class="price-row">
+        <div class="price"><b>250 lei</b><span>Tarif unic — terapie individuală</span></div>
+        <div class="price"><b>100 lei</b><span>Grup</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button id="toTop" type="button" aria-label="Înapoi sus">↑</button>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#acasa" class="brand">Psy<span>Insomnia</span></a>
+        <p class="foot-tag">The Psychology of Better Sleep</p>
+        <p class="foot-text">Prevenție prin psihoeducație: cum gestionezi insomnia prin metode psihologice, CBT-I și nu numai.</p>
+        <div class="socials"><a class="soc" href="https://www.facebook.com/PsyAlexSimion" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a><a class="soc" href="https://www.linkedin.com/in/simionalexandrumihail/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a><a class="soc" href="https://wa.me/40749255366" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zM20.52 3.45A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.42-8.46z"/></svg></a><a class="soc" href="mailto:psyalexsimion@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a class="soc" href="https://www.psyalexsimion.com" target="_blank" rel="noopener" aria-label="Website" title="Website"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></a></div>
+      </div>
+      <div>
+        <h4>Navigare</h4>
+        <ul class="foot-links">
+          <li><a href="#despre">Despre noi</a></li>
+          <li><a href="#isi">Evaluare</a></li>
+          <li><a href="#tehnici">Tehnici</a></li>
+          <li><a href="#articole">Articole</a></li>
+          <li><a href="#comunitate">Comunitate</a></li>
+          <li><a href="#resurse">Resurse</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="foot-links">
+          <li><b>Alex Simion</b></li>
+          <li><a href="mailto:psyalexsimion@gmail.com">psyalexsimion@gmail.com</a></li>
+          <li><a href="tel:+40749255366">+40 749 255 366</a></li>
+          <li class="gap"><b>Silvana Capris</b></li>
+          <li><a href="mailto:hello@antrenordecreier.ro">hello@antrenordecreier.ro</a></li>
+          <li><a href="tel:+40744603217">+40 744 603 217</a></li>
+          <li><a href="https://antrenordecreier.ro/" target="_blank" rel="noopener">antrenordecreier.ro</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p><b>Important:</b> instrument educațional bazat pe CBT-I. Nu înlocuiește o evaluare clinică individuală și nu oferă diagnostic. În situații de criză, sună la <b>112</b>.</p>
+      <div class="foot-bottom">
+        <span>© 2026 PsyInsomnia</span>
+        <span>Creat de <a href="https://www.psyalexsimion.com" target="_blank" rel="noopener">Alex Simion</a> · <a href="#acasa">Sus ↑</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+// ---------- generic storage helpers ----------
+function load(key){ try{ const v = JSON.parse(localStorage.getItem(key)); return v === null || v === undefined ? [] : v; }catch(e){ return []; } }
+function save(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); return true; }catch(e){ return false; } }
+
+// ---------- profiles ----------
+const LS_PROFILES = 'cbti_profiles';
+const LS_ACTIVE = 'cbti_active_profile';
+
+function getProfiles(){ return load(LS_PROFILES); }
+function saveProfiles(list){ save(LS_PROFILES, list); }
+
+function makeProfileId(){ return 'p_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+function ensureActiveProfile(){
+  let profiles = getProfiles();
+  if(profiles.length === 0){
+    const p = { id: makeProfileId(), name: 'Pacient 1' };
+    profiles = [p];
+    saveProfiles(profiles);
+    localStorage.setItem(LS_ACTIVE, p.id);
+    return p.id;
+  }
+  let active = localStorage.getItem(LS_ACTIVE);
+  if(!active || !profiles.find(p=>p.id===active)){
+    active = profiles[0].id;
+    localStorage.setItem(LS_ACTIVE, active);
+  }
+  return active;
+}
+
+function getActiveProfileId(){ return ensureActiveProfile(); }
+function setActiveProfileId(id){ localStorage.setItem(LS_ACTIVE, id); }
+
+function DIARY_KEY(){ return 'cbti_diary::' + getActiveProfileId(); }
+function ISI_KEY(){ return 'cbti_isi::' + getActiveProfileId(); }
+
+function renderProfileSelect(){
+  const sel = document.getElementById('profileSelect');
+  const active = getActiveProfileId();
+  const profiles = getProfiles();
+  sel.innerHTML = '';
+  profiles.forEach(p=>{
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = p.name;
+    if(p.id === active) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  document.getElementById('btnDeleteProfile').disabled = profiles.length <= 1;
+}
+
+function refreshAllForProfileChange(){
+  cancelDiaryEdit();
+  renderDiary();
+  renderStats();
+  renderISIChart();
+  renderSEChart();
+  renderComparison();
+  document.getElementById('isiResult').style.display = 'none';
+  document.getElementById('calcResult').style.display = 'none';
+  document.getElementById('calcEmpty').style.display = 'block';
+  document.querySelectorAll('#isiForm input[type=radio]').forEach(r=> r.checked = false);
+}
+
+document.getElementById('profileSelect').addEventListener('change', function(){
+  setActiveProfileId(this.value);
+  refreshAllForProfileChange();
+});
+
+document.getElementById('btnNewProfile').addEventListener('click', function(){
+  const name = prompt('Numele noului profil (ex: numele pacientului):');
+  if(!name || !name.trim()) return;
+  const profiles = getProfiles();
+  const p = { id: makeProfileId(), name: name.trim() };
+  profiles.push(p);
+  saveProfiles(profiles);
+  setActiveProfileId(p.id);
+  renderProfileSelect();
+  refreshAllForProfileChange();
+});
+
+document.getElementById('btnRenameProfile').addEventListener('click', function(){
+  const profiles = getProfiles();
+  const active = getActiveProfileId();
+  const current = profiles.find(p=>p.id===active);
+  if(!current) return;
+  const name = prompt('Nume nou pentru acest profil:', current.name);
+  if(!name || !name.trim()) return;
+  current.name = name.trim();
+  saveProfiles(profiles);
+  renderProfileSelect();
+});
+
+document.getElementById('btnDeleteProfile').addEventListener('click', function(){
+  const profiles = getProfiles();
+  if(profiles.length <= 1) return;
+  const active = getActiveProfileId();
+  const current = profiles.find(p=>p.id===active);
+  if(!confirm('Ștergi profilul "'+(current?current.name:'')+'" și tot jurnalul + istoricul ISI asociate? Această acțiune nu poate fi anulată.')) return;
+  localStorage.removeItem('cbti_diary::'+active);
+  localStorage.removeItem('cbti_isi::'+active);
+  const remaining = profiles.filter(p=>p.id!==active);
+  saveProfiles(remaining);
+  setActiveProfileId(remaining[0].id);
+  renderProfileSelect();
+  refreshAllForProfileChange();
+});
+
+// ---------- mobile nav ----------
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+function applyNavMode(){
+  if(window.innerWidth < 720){
+    navToggle.style.display='inline-block';
+    navLinks.style.display='none';
+    navLinks.style.flexDirection='column';
+    navLinks.style.position='absolute';
+    navLinks.style.top='58px';
+    navLinks.style.left='0';
+    navLinks.style.right='0';
+    navLinks.style.background='#131A2B';
+    navLinks.style.padding='8px 20px 16px';
+  } else {
+    navToggle.style.display='none';
+    navLinks.style.display='flex';
+    navLinks.style.position='static';
+    navLinks.style.flexDirection='row';
+    navLinks.style.padding='0';
+  }
+}
+navToggle.addEventListener('click', ()=>{
+  navLinks.style.display = navLinks.style.display === 'none' ? 'flex' : 'none';
+});
+window.addEventListener('resize', applyNavMode);
+applyNavMode();
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+  if(window.innerWidth < 720) navLinks.style.display='none';
+}));
+
+// ---------- ISI ----------
+const ISI_QUESTIONS = [
+  "Dificultate de a adormi",
+  "Dificultate de a rămâne adormit(ă)",
+  "Probleme legate de trezirea prea devreme dimineața",
+  "Cât de mulțumit(ă) / nemulțumit(ă) ești de somnul tău actual",
+  "Cât de vizibil crezi că este, pentru ceilalți, impactul problemei tale de somn asupra calității vieții",
+  "Cât de îngrijorat(ă) / deranjat(ă) ești de problema ta actuală de somn",
+  "În ce măsură crezi că problema de somn interferează cu funcționarea ta zilnică (oboseală, dispoziție, concentrare etc.)"
+];
+const ISI_SCALE_LABELS = ["0 — deloc","1 — ușor","2 — moderat","3 — sever","4 — foarte sever"];
+
+const isiForm = document.getElementById('isiForm');
+let isiHTML = '';
+ISI_QUESTIONS.forEach((q, i)=>{
+  isiHTML += '<div class="isi-q"><p>'+(i+1)+'. '+q+'</p><div class="scale">';
+  ISI_SCALE_LABELS.forEach((lab, v)=>{
+    isiHTML += '<label><input type="radio" name="isi_q'+i+'" value="'+v+'">'+lab+'</label>';
+  });
+  isiHTML += '</div></div>';
+});
+isiHTML += '<div style="padding-top:20px;"><button class="btn" id="isiSubmit" type="button">Calculează scorul</button></div>';
+isiForm.innerHTML = isiHTML;
+
+function interpretISI(total){
+  if(total<=7) return {label:'Fără insomnie clinică', cls:'b0'};
+  if(total<=14) return {label:'Insomnie subclinică', cls:'b1'};
+  if(total<=21) return {label:'Insomnie moderată', cls:'b2'};
+  return {label:'Insomnie severă', cls:'b3'};
+}
+
+document.getElementById('isiSubmit').addEventListener('click', function(){
+  let total = 0, answered = 0;
+  for(let i=0;i<7;i++){
+    const sel = isiForm.querySelector('input[name="isi_q'+i+'"]:checked');
+    if(sel){ total += parseInt(sel.value,10); answered++; }
+  }
+  if(answered < 7){
+    alert('Te rog răspunde la toate cele 7 întrebări.');
+    return;
+  }
+  const interp = interpretISI(total);
+  const resultBox = document.getElementById('isiResult');
+  resultBox.style.display = 'block';
+  resultBox.innerHTML =
+    '<span class="score">'+total+'<span style="font-size:1rem;color:var(--muted);font-family:\'Inter\',sans-serif;"> / 28</span></span>'+
+    '<div style="margin-top:8px;"><span class="badge '+interp.cls+'">'+interp.label+'</span></div>';
+
+  const todayStr = new Date().toISOString().slice(0,10);
+  const history = load(ISI_KEY());
+  const existingIdx = history.findIndex(h=>h.date===todayStr);
+  if(existingIdx >= 0){
+    if(confirm('Ai completat deja chestionarul ISI azi. Vrei să suprascrii scorul anterior din această zi?')){
+      history[existingIdx] = {date: todayStr, total};
+      save(ISI_KEY(), history);
+    }
+  } else {
+    history.push({date: todayStr, total});
+    save(ISI_KEY(), history);
+  }
+  renderStats();
+  renderISIChart();
+  renderComparison();
+});
+
+// ---------- Diary ----------
+function toMinutes(t){ const parts = t.split(':').map(Number); return parts[0]*60+parts[1]; }
+function fmtHours(mins){ return (mins/60).toFixed(1)+'h'; }
+
+function computeNight(entry){
+  let bed = toMinutes(entry.bed);
+  let up = toMinutes(entry.up);
+  if(up <= bed) up += 24*60;
+  let tib = up - bed;
+  let tst = tib - entry.latency - entry.awake;
+  if(tst < 0) tst = 0;
+  let se = tib > 0 ? (tst / tib * 100) : 0;
+  return {tib, tst, se};
+}
+
+let editingIndex = null;
+
+const diaryForm = document.getElementById('diaryForm');
+document.getElementById('d_date').valueAsDate = new Date();
+
+function cancelDiaryEdit(){
+  editingIndex = null;
+  document.getElementById('editingFlag').classList.remove('show');
+  document.getElementById('diarySubmitBtn').textContent = 'Salvează noaptea';
+  document.getElementById('diaryCancelEdit').style.display = 'none';
+  diaryForm.reset();
+  document.getElementById('d_date').valueAsDate = new Date();
+  document.getElementById('d_quality').value = 3;
+}
+document.getElementById('diaryCancelEdit').addEventListener('click', cancelDiaryEdit);
+
+diaryForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const entry = {
+    date: document.getElementById('d_date').value,
+    bed: document.getElementById('d_bed').value,
+    latency: parseInt(document.getElementById('d_latency').value,10) || 0,
+    awake: parseInt(document.getElementById('d_awake').value,10) || 0,
+    finalwake: document.getElementById('d_finalwake').value,
+    up: document.getElementById('d_up').value,
+    quality: parseInt(document.getElementById('d_quality').value,10),
+    nap: parseInt(document.getElementById('d_nap').value,10) || 0,
+    note: (document.getElementById('d_note').value || '').trim(),
+  };
+  if(!entry.date || !entry.bed || !entry.finalwake || !entry.up){
+    alert('Completează toate câmpurile obligatorii.');
+    return;
+  }
+  const diary = load(DIARY_KEY());
+  if(editingIndex !== null && editingIndex >= 0 && editingIndex < diary.length){
+    diary[editingIndex] = entry;
+  } else {
+    diary.push(entry);
+  }
+  diary.sort((a,b)=> a.date.localeCompare(b.date));
+  save(DIARY_KEY(), diary);
+  cancelDiaryEdit();
+  renderDiary();
+  renderStats();
+  renderSEChart();
+  renderComparison();
+  runCalculator();
+});
+
+function seTag(se){
+  if(se>=90) return '<span class="se-tag se-good">'+se.toFixed(0)+'%</span>';
+  if(se>=85) return '<span class="se-tag se-mid">'+se.toFixed(0)+'%</span>';
+  return '<span class="se-tag se-low">'+se.toFixed(0)+'%</span>';
+}
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function renderDiary(){
+  const diary = load(DIARY_KEY());
+  const body = document.getElementById('diaryBody');
+  const emptyMsg = document.getElementById('diaryEmpty');
+  body.innerHTML = '';
+  if(diary.length === 0){
+    emptyMsg.style.display = 'block';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+  [...diary].reverse().forEach((entry)=>{
+    const {tib, tst, se} = computeNight(entry);
+    const realIndex = diary.indexOf(entry);
+    const noteDisplay = entry.note ? escapeHtml(entry.note.length > 28 ? entry.note.slice(0,28)+'…' : entry.note) : '—';
+    const noteTitle = entry.note ? ' title="'+escapeHtml(entry.note)+'"' : '';
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>'+entry.date+'</td>'+
+      '<td>'+entry.bed+' → '+entry.up+'</td>'+
+      '<td>'+fmtHours(tib)+'</td>'+
+      '<td>'+fmtHours(tst)+'</td>'+
+      '<td>'+seTag(se)+'</td>'+
+      '<td>'+entry.quality+'/5</td>'+
+      '<td>'+(entry.nap ? entry.nap+' min' : '—')+'</td>'+
+      '<td class="note-cell"'+noteTitle+'>'+noteDisplay+'</td>'+
+      '<td><button class="icon-btn" data-idx="'+realIndex+'" data-action="edit" title="Editează">✎</button>'+
+      '<button class="icon-btn danger" data-idx="'+realIndex+'" data-action="delete" title="Șterge">✕</button></td>';
+    body.appendChild(tr);
+  });
+  body.querySelectorAll('.icon-btn').forEach(btn=>{
+    btn.addEventListener('click', function(){
+      const idx = parseInt(this.getAttribute('data-idx'),10);
+      const action = this.getAttribute('data-action');
+      if(action === 'delete'){
+        if(!confirm('Ștergi definitiv această noapte din jurnal?')) return;
+        const d = load(DIARY_KEY());
+        d.splice(idx,1);
+        save(DIARY_KEY(), d);
+        if(editingIndex === idx) cancelDiaryEdit();
+        renderDiary();
+        renderStats();
+        renderSEChart();
+        renderComparison();
+        runCalculator();
+      } else if(action === 'edit'){
+        const d = load(DIARY_KEY());
+        const entry = d[idx];
+        if(!entry) return;
+        editingIndex = idx;
+        document.getElementById('d_date').value = entry.date;
+        document.getElementById('d_bed').value = entry.bed;
+        document.getElementById('d_latency').value = entry.latency;
+        document.getElementById('d_awake').value = entry.awake;
+        document.getElementById('d_finalwake').value = entry.finalwake;
+        document.getElementById('d_up').value = entry.up;
+        document.getElementById('d_quality').value = entry.quality;
+        document.getElementById('d_nap').value = entry.nap || 0;
+        document.getElementById('d_note').value = entry.note || '';
+        document.getElementById('editingFlag').classList.add('show');
+        document.getElementById('diarySubmitBtn').textContent = 'Actualizează noaptea';
+        document.getElementById('diaryCancelEdit').style.display = 'inline-block';
+        document.getElementById('jurnal').scrollIntoView({behavior:'smooth'});
+      }
+    });
+  });
+}
+
+// ---------- Export / Import ----------
+async function downloadBlob(filename, content, mime){
+  if(!window.claude || typeof window.claude.use !== 'function'){
+    alert('Exportul de fișiere nu este disponibil în această fereastră.');
+    return;
+  }
+  const downloads = await window.claude.use('downloads');
+  if(!downloads){
+    alert('Exportul de fișiere nu este disponibil în această fereastră.');
+    return;
+  }
+  try{
+    const blob = new Blob([content], {type: mime});
+    await downloads.save({filename, data: blob});
+  }catch(err){
+    if(!err || err.code !== 'declined'){
+      alert('Nu s-a putut salva fișierul.');
+    }
+  }
+}
+
+document.getElementById('btnExportJson').addEventListener('click', async function(){
+  const profiles = getProfiles();
+  const active = getActiveProfileId();
+  const profile = profiles.find(p=>p.id===active);
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    profileName: profile ? profile.name : '',
+    diary: load(DIARY_KEY()),
+    isiHistory: load(ISI_KEY())
+  };
+  const fname = 'psyinsomnia_' + (profile?profile.name.replace(/[^a-z0-9]+/gi,'-'):'export') + '_' + new Date().toISOString().slice(0,10) + '.json';
+  await downloadBlob(fname, JSON.stringify(payload, null, 2), 'application/json');
+});
+
+function csvEscape(v){
+  const s = String(v==null?'':v);
+  if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+  return s;
+}
+
+document.getElementById('btnExportCsv').addEventListener('click', async function(){
+  const diary = load(DIARY_KEY());
+  const header = ['Data','Culcare','TrezireFinala','RidicareDinPat','LatentaMin','TreazMin','Calitate1_5','SomnZiMin','Nota','TIB_h','TST_h','SE_%'];
+  const rows = [header.join(',')];
+  diary.forEach(e=>{
+    const {tib, tst, se} = computeNight(e);
+    rows.push([
+      e.date, e.bed, e.finalwake, e.up, e.latency, e.awake, e.quality, e.nap||0, csvEscape(e.note||''),
+      (tib/60).toFixed(2), (tst/60).toFixed(2), se.toFixed(1)
+    ].join(','));
+  });
+  await downloadBlob('psyinsomnia-jurnal_'+new Date().toISOString().slice(0,10)+'.csv', rows.join('\n'), 'text/csv');
+});
+
+document.getElementById('btnImportJson').addEventListener('click', function(){
+  document.getElementById('importFileInput').click();
+});
+document.getElementById('importFileInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(){
+    let parsed;
+    try{ parsed = JSON.parse(reader.result); }
+    catch(err){ alert('Fișierul nu este un JSON valid.'); return; }
+    if(!parsed || (!Array.isArray(parsed.diary) && !Array.isArray(parsed.isiHistory))){
+      alert('Fișierul nu are formatul așteptat (export din PsyInsomnia).');
+      return;
+    }
+    if(!confirm('Importul va înlocui jurnalul și istoricul ISI ale profilului curent cu datele din fișier. Continui?')) return;
+    if(Array.isArray(parsed.diary)) save(DIARY_KEY(), parsed.diary);
+    if(Array.isArray(parsed.isiHistory)) save(ISI_KEY(), parsed.isiHistory);
+    renderDiary(); renderStats(); renderISIChart(); renderSEChart(); renderComparison();
+    document.getElementById('calcResult').style.display='none';
+    document.getElementById('calcEmpty').style.display='block';
+    runCalculator();
+    alert('Import finalizat.');
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// ---------- Calculator ----------
+function runCalculator(){
+  const diary = load(DIARY_KEY());
+  const windowSize = parseInt(document.getElementById('c_window').value,10);
+  const recent = diary.slice(-windowSize);
+  const resultBox = document.getElementById('calcResult');
+  const emptyBox = document.getElementById('calcEmpty');
+  if(recent.length < 3){
+    resultBox.style.display = 'none';
+    emptyBox.style.display = 'block';
+    return;
+  }
+  emptyBox.style.display = 'none';
+  resultBox.style.display = 'block';
+
+  let sumTST = 0, sumSE = 0;
+  recent.forEach(e=>{
+    const {tst, se} = computeNight(e);
+    sumTST += tst; sumSE += se;
+  });
+  const avgTSTmin = sumTST / recent.length;
+  const avgSE = sumSE / recent.length;
+
+  let tibMin = avgTSTmin + 20;
+  const MIN_TIB = 5.5 * 60;
+  if(tibMin < MIN_TIB) tibMin = MIN_TIB;
+
+  document.getElementById('c_avgTST').textContent = (avgTSTmin/60).toFixed(1)+'h';
+  document.getElementById('c_avgSE').textContent = avgSE.toFixed(0)+'%';
+  document.getElementById('c_tib').textContent = (tibMin/60).toFixed(1)+'h';
+
+  const wakeStr = document.getElementById('c_wake').value || '07:00';
+  const wakeMin = toMinutes(wakeStr);
+  let bedMin = wakeMin - tibMin;
+  if(bedMin < 0) bedMin += 24*60;
+  const bedH = String(Math.floor(bedMin/60)%24).padStart(2,'0');
+  const bedM = String(Math.round(bedMin%60)).padStart(2,'0');
+  document.getElementById('c_schedule').textContent = 'Culcare '+bedH+':'+bedM+' → Trezire '+wakeStr;
+
+  document.querySelectorAll('#seRuleTable tr').forEach(tr=>tr.classList.remove('row-highlight'));
+  let decisionText = '';
+  if(avgSE >= 90){
+    document.querySelector('[data-rule="high"]').classList.add('row-highlight');
+    decisionText = 'SE medie '+avgSE.toFixed(0)+'% — somnul s-a consolidat. Săptămâna viitoare, crește TIB cu 15–20 min.';
+  } else if(avgSE >= 85){
+    document.querySelector('[data-rule="mid"]').classList.add('row-highlight');
+    decisionText = 'SE medie '+avgSE.toFixed(0)+'% — menține TIB neschimbat încă o săptămână.';
+  } else {
+    document.querySelector('[data-rule="low"]').classList.add('row-highlight');
+    decisionText = 'SE medie '+avgSE.toFixed(0)+'% — scade TIB cu 15–20 min (fără a coborî sub 5–5,5 ore).';
+  }
+  document.getElementById('c_decision').textContent = decisionText;
+}
+document.getElementById('calcBtn').addEventListener('click', runCalculator);
+document.getElementById('c_wake').addEventListener('change', runCalculator);
+document.getElementById('c_window').addEventListener('change', runCalculator);
+
+// ---------- Accordion ----------
+const ACCORDION_DATA = [
+  {
+    title: "Modelul 3P și hiperactivarea",
+    body: '<p>Insomnia se menține prin trei tipuri de factori: <b>predispozanți</b> (vulnerabilitate individuală), <b>precipitanți</b> (evenimentul declanșator) și <b>perpetuanți</b> — comportamentele compensatorii (somn prelungit, culcare devreme, îngrijorare legată de somn) care, paradoxal, mențin problema mult după ce factorul declanșator a dispărut. CBT-I țintește în special perpetuanții.</p><div class="note">Insomnia nu e doar „lipsă de somn" — e o stare de activare fiziologică și cognitivă crescută (modelul hiperactivării, Perlis), pe care corpul o menține chiar în pat.</div>'
+  },
+  {
+    title: "Control stimul — cele 7 reguli",
+    body: '<ol><li>Patul și dormitorul se folosesc doar pentru somn și activitate sexuală.</li><li>Te culci doar la apariția somnolenței reale, nu a oboselii generale.</li><li>Dacă nu adormi în ~15–20 minute, te ridici din pat,faci o activitate în altă cameră (de discutat cu psihologul ce activitate) și revii doar dupa ce te simti din nou in stare de somnolență.</li><li>Repeți regula anterioară de câte ori e nevoie, toată noaptea.</li><li>Ora de trezire e fixă, 7 zile din 7, indiferent câte ore ai dormit.</li><li>Fără somn de zi; dacă e absolut necesar, dormi maxim 20 de minute, iar somnul sa fie înainte de ora 15:00 ("power nap").</li><li>Mediteaza 15-20 min zilnic (chiar si in locul "power nap"-ului).</li></ol>'
+  },
+  {
+    title: "Restricție de somn / compresie",
+    body: '<p>Timpul petrecut în pat se aliniază la timpul real de somn, pentru a crește presiunea homeostatică și a consolida somnul — vezi secțiunea Calculator pentru aplicarea directă pe datele tale.</p><div class="note">La vârstnici sau persoane fragile se preferă <b>compresia graduală</b> — reducere treptată pe 3–4 săptămâni — în locul reducerii bruște.</div>'
+  },
+  {
+    title: "Terapie cognitivă",
+    body: '<ul><li><b>Restructurare cognitivă:</b> identificare → evaluare a dovezilor → gând alternativ, mai realist.</li><li><b>Intenție paradoxală:</b> pentru anxietatea legată de procesul adormirii.</li><li><b>„Constructive worry":</b> timp dedicat îngrijorării, programat cu 2–3 ore înainte de culcare.</li><li><b>Decatastrofizare:</b> separarea oboselii de insomnie de alte cauze posibile ale ei.</li><li><b>Reducerea comportamentelor de siguranță:</b> verificarea ceasului, calculul orelor rămase până la trezire.</li></ul>'
+  },
+  {
+    title: "Relaxare și igiena somnului (adjuvante)",
+    body: '<ul><li>Relaxare musculară progresivă, respirație diafragmatică, mindfulness / body scan.</li><li>Cafeină — evitare cu minimum 6 ore înainte de culcare.</li><li>Alcool — fragmentează somnul în a doua parte a nopții, chiar dacă pare că ajută la adormire.</li><li>Temperatură cameră 18–20°C, reducerea luminii albastre seara.</li></ul><div class="note">Igiena de somn, izolată, are eficacitate redusă — funcționează doar ca supliment la celelalte componente, nu ca tratament principal.</div>'
+  },
+];
+
+const accWrap = document.getElementById('accordion');
+ACCORDION_DATA.forEach((item, i)=>{
+  const div = document.createElement('div');
+  div.className = 'acc-item' + (i===0 ? ' open' : '');
+  div.innerHTML =
+    '<button class="acc-head" aria-expanded="'+(i===0)+'"><span>'+item.title+'</span><span class="plus">+</span></button>'+
+    '<div class="acc-body"><div class="acc-body-inner">'+item.body+'</div></div>';
+  accWrap.appendChild(div);
+  const head = div.querySelector('.acc-head');
+  const body = div.querySelector('.acc-body');
+  function setState(open){
+    div.classList.toggle('open', open);
+    head.setAttribute('aria-expanded', open);
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0px';
+  }
+  head.addEventListener('click', ()=> setState(!div.classList.contains('open')));
+  if(i===0){ requestAnimationFrame(()=> setState(true)); }
+});
+window.addEventListener('load', ()=>{
+  document.querySelectorAll('.acc-item.open .acc-body').forEach(b=>{ b.style.maxHeight = b.scrollHeight+'px'; });
+});
+
+// ---------- Stats (hero) ----------
+function renderStats(){
+  const diary = load(DIARY_KEY());
+  const isi = load(ISI_KEY());
+  document.getElementById('statEntries').textContent = diary.length;
+  if(diary.length){
+    const recent = diary.slice(-7);
+    let sumSE = 0;
+    recent.forEach(e=>{ sumSE += computeNight(e).se; });
+    document.getElementById('statSE').textContent = (sumSE/recent.length).toFixed(0)+'%';
+  } else {
+    document.getElementById('statSE').textContent = '—';
+  }
+  if(isi.length){
+    document.getElementById('statISI').textContent = isi[isi.length-1].total + '/28';
+  } else {
+    document.getElementById('statISI').textContent = '—';
+  }
+}
+
+// ---------- Comparison ----------
+function renderComparison(){
+  const isi = load(ISI_KEY());
+  const diary = load(DIARY_KEY());
+
+  const isiNumsEl = document.getElementById('cmpIsiNums');
+  const isiDeltaEl = document.getElementById('cmpIsiDelta');
+  if(isi.length >= 2){
+    const first = isi[0].total, last = isi[isi.length-1].total;
+    isiNumsEl.innerHTML = first+' <span class="arrow">→</span> '+last;
+    const diff = last - first;
+    isiDeltaEl.textContent = (diff<=0 ? diff : '+'+diff) + ' puncte' + (diff<0?' (ameliorare)': diff>0 ? ' (agravare)' : ' (neschimbat)');
+    isiDeltaEl.className = 'compare-delta ' + (diff<0?'better':diff>0?'worse':'flat');
+  } else {
+    isiNumsEl.innerHTML = '— <span class="arrow">→</span> —';
+    isiDeltaEl.textContent = 'Necesită cel puțin 2 completări ISI.';
+    isiDeltaEl.className = 'compare-delta flat';
+  }
+
+  const seNumsEl = document.getElementById('cmpSeNums');
+  const seDeltaEl = document.getElementById('cmpSeDelta');
+  if(diary.length >= 2){
+    const half = Math.max(1, Math.floor(diary.length/2));
+    const firstGroup = diary.slice(0, half);
+    const lastGroup = diary.slice(diary.length-half);
+    const avg = (arr)=> arr.reduce((s,e)=> s+computeNight(e).se, 0) / arr.length;
+    const firstAvg = avg(firstGroup), lastAvg = avg(lastGroup);
+    seNumsEl.innerHTML = firstAvg.toFixed(0)+'% <span class="arrow">→</span> '+lastAvg.toFixed(0)+'%';
+    const diff = lastAvg - firstAvg;
+    seDeltaEl.textContent = (diff>=0?'+':'') + diff.toFixed(0) + ' puncte procentuale' + (diff>0?' (ameliorare)': diff<0 ? ' (agravare)' : ' (neschimbat)');
+    seDeltaEl.className = 'compare-delta ' + (diff>0?'better':diff<0?'worse':'flat');
+  } else {
+    seNumsEl.innerHTML = '— <span class="arrow">→</span> —';
+    seDeltaEl.textContent = 'Necesită cel puțin 2 nopți în jurnal.';
+    seDeltaEl.className = 'compare-delta flat';
+  }
+}
+
+// ---------- Charts ----------
+let isiChartInstance = null, seChartInstance = null;
+const CHART_FONT = "'Inter', sans-serif";
+
+function renderISIChart(){
+  const isi = load(ISI_KEY());
+  const canvas = document.getElementById('isiChart');
+  const emptyMsg = document.getElementById('isiChartEmpty');
+  if(isi.length === 0){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Completează chestionarul ISI pentru a vedea evoluția.'; return; }
+  if(typeof Chart === 'undefined'){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Graficul nu s-a putut încărca (verifică conexiunea la internet).'; return; }
+  canvas.style.display='block'; emptyMsg.style.display='none';
+  const labels = isi.map(e=>e.date);
+  const data = isi.map(e=>e.total);
+  if(isiChartInstance) isiChartInstance.destroy();
+  isiChartInstance = new Chart(canvas.getContext('2d'), {
+    type:'line',
+    data:{ labels, datasets:[{
+      label:'Scor ISI', data, borderColor:'#B8863B', backgroundColor:'rgba(184,134,59,0.12)',
+      fill:true, tension:0.25, pointRadius:4, pointBackgroundColor:'#B8863B'
+    }]},
+    options:{
+      responsive:true,
+      plugins:{ legend:{display:false}, tooltip:{titleFont:{family:CHART_FONT}, bodyFont:{family:CHART_FONT}} },
+      scales:{
+        y:{ min:0, max:28, ticks:{font:{family:CHART_FONT}}, grid:{color:'#DEDACE'} },
+        x:{ ticks:{font:{family:CHART_FONT}}, grid:{display:false} }
+      }
+    }
+  });
+}
+
+function renderSEChart(){
+  const diary = load(DIARY_KEY());
+  const canvas = document.getElementById('seChart');
+  const emptyMsg = document.getElementById('seChartEmpty');
+  if(diary.length === 0){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Completează jurnalul de somn pentru a vedea evoluția.'; return; }
+  if(typeof Chart === 'undefined'){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Graficul nu s-a putut încărca (verifică conexiunea la internet).'; return; }
+  canvas.style.display='block'; emptyMsg.style.display='none';
+  const recent = diary.slice(-30);
+  const labels = recent.map(e=>e.date);
+  const data = recent.map(e=> parseFloat(computeNight(e).se.toFixed(1)));
+  const line90 = labels.map(()=>90);
+  const line85 = labels.map(()=>85);
+  if(seChartInstance) seChartInstance.destroy();
+  seChartInstance = new Chart(canvas.getContext('2d'), {
+    data:{ labels, datasets:[
+      {
+        type:'bar', label:'Sleep Efficiency %', data,
+        backgroundColor: data.map(v=> v>=90 ? '#4F7A63' : v>=85 ? '#C9A227' : '#A8574F'),
+        order: 2
+      },
+      {
+        type:'line', label:'Prag țintă 90%', data: line90, borderColor:'#4F7A63',
+        borderDash:[5,4], pointRadius:0, borderWidth:1.5, fill:false, order:1
+      },
+      {
+        type:'line', label:'Prag minim 85%', data: line85, borderColor:'#A8574F',
+        borderDash:[5,4], pointRadius:0, borderWidth:1.5, fill:false, order:1
+      }
+    ]},
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{ display:true, labels:{ font:{family:CHART_FONT, size:11}, boxWidth:14 } },
+        tooltip:{titleFont:{family:CHART_FONT}, bodyFont:{family:CHART_FONT}}
+      },
+      scales:{
+        y:{ min:0, max:100, ticks:{font:{family:CHART_FONT}}, grid:{color:'#DEDACE'} },
+        x:{ ticks:{font:{family:CHART_FONT}}, grid:{display:false} }
+      }
+    }
+  });
+}
+
+// ---------- init ----------
+renderProfileSelect();
+renderDiary();
+renderStats();
+renderISIChart();
+renderSEChart();
+renderComparison();
+runCalculator();
+
+})();
+</script>
+
+<script>
+(function(){
+  // 1) Stepper automat
+  var steps=[].slice.call(document.querySelectorAll('#steps .step'));
+  function num(id){var v=parseInt(document.getElementById(id).textContent,10);return isNaN(v)?0:v;}
+  function updateSteps(){
+    var entries=num('statEntries');
+    var isi=document.getElementById('statISI').textContent.trim()!=='—';
+    var done=[isi, entries>=7, entries>=3, isi&&entries>=7];
+    var sub=[isi?'Completat':'7 întrebări, ~2 minute', entries+'/7 nopți înregistrate', entries>=3?'Gata de calculat':'Mai ai nevoie de '+Math.max(0,3-entries)+' nopți', done[3]?'Revino săptămânal':'Repetă ISI săptămânal'];
+    var nextSet=false;
+    steps.forEach(function(el,i){
+      el.classList.toggle('done',done[i]);
+      el.classList.remove('next');
+      var old=el.querySelector('.tag'); if(old) old.remove();
+      el.querySelector('.s').textContent=sub[i];
+      if(!done[i] && !nextSet){nextSet=true;el.classList.add('next');var g=document.createElement('span');g.className='tag';g.textContent='Următorul';el.appendChild(g);}
+      var n=el.querySelector('.n'); n.textContent=done[i]?'✓':(i+1);
+    });
+  }
+  var mo=new MutationObserver(updateSteps);
+  ['statEntries','statSE','statISI'].forEach(function(id){mo.observe(document.getElementById(id),{childList:true,characterData:true,subtree:true});});
+  updateSteps();
+
+  // 2) Secțiune activă în meniu
+  var map={despre:'despre',flow:'isi',instrument:'isi',isi:'isi',jurnal:'isi',calculator:'isi',progres:'isi',tehnici:'tehnici',articole:'articole',comunitate:'comunitate',resurse:'resurse',contact:'contact'};
+  var links={};
+  [].slice.call(document.querySelectorAll('#navLinks a')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          var key=map[e.target.id];
+          Object.keys(links).forEach(function(k){links[k].classList.toggle('active',k===key);});
+        }
+      });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    Object.keys(map).forEach(function(k){var s=document.getElementById(k);if(s)io.observe(s);});
+  }
+
+  // 2b) Notă informativă la prima vizită
+  var nb=document.getElementById('noticeBar');
+  try{ if(!localStorage.getItem('psyinsomnia_notice_ok')) nb.hidden=false; }catch(e){ nb.hidden=false; }
+  document.getElementById('noticeOk').addEventListener('click',function(){
+    nb.hidden=true; try{localStorage.setItem('psyinsomnia_notice_ok','1');}catch(e){}
+  });
+
+  // ISI: pliat implicit
+  var isiBtn=document.getElementById('isiToggle'), isiBody=document.getElementById('isiBody'), isiLbl=document.getElementById('isiToggleLabel');
+  function setIsi(open){
+    isiBody.hidden=!open; isiBtn.setAttribute('aria-expanded',open?'true':'false');
+    isiLbl.textContent=open?'Ascunde evaluarea':'Începe evaluarea';
+  }
+  isiBtn.addEventListener('click',function(){setIsi(isiBody.hidden);});
+  document.querySelectorAll('a[href="#isi"]').forEach(function(a){
+    if(a.closest('#navLinks')) return;
+    a.addEventListener('click',function(){setIsi(true);});
+  });
+  if(location.hash==='#isi') setIsi(true);
+
+  // Secțiuni pliabile (Jurnal, Calculator, Progres, Tehnici, Resurse)
+  function setSec(btn,open){
+    var body=document.getElementById(btn.dataset.target);
+    body.hidden=!open; btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.querySelector('.lbl').textContent=open?btn.dataset.close:btn.dataset.open;
+    if(open) setTimeout(function(){window.dispatchEvent(new Event('resize'));},60);
+  }
+  var secBtns={};
+  document.querySelectorAll('.sec-toggle').forEach(function(b){
+    secBtns[b.dataset.target.replace('Body','')]=b;
+    b.addEventListener('click',function(){setSec(b,document.getElementById(b.dataset.target).hidden);});
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    var id=a.getAttribute('href').slice(1);
+    if(secBtns[id]) a.addEventListener('click',function(){setSec(secBtns[id],true);});
+  });
+  var h=location.hash.slice(1); if(secBtns[h]) setSec(secBtns[h],true);
+
+  // Avatare în hero, copiate din secțiunea Despre noi
+  var ph=document.querySelectorAll('#despre .person-head .photo');
+  [['heroAv1',1],['heroAv2',0]].forEach(function(x){var el=document.getElementById(x[0]);if(el&&ph[x[1]])el.src=ph[x[1]].src;});
+
+  // Deschide articolul din hash
+  if(location.hash.indexOf('#art-')===0){var ar=document.querySelector(location.hash);if(ar&&ar.tagName==='DETAILS')ar.open=true;}
+
+  // Linkuri grupuri: completează data-url cu linkul real al grupului.
+  // Până atunci, butonul trimite o cerere de înscriere pe WhatsApp către Alex.
+  ['joinFb','joinWa'].forEach(function(id){
+    var a=document.getElementById(id); if(!a) return;
+    var u=a.getAttribute('data-url');
+    a.href = u ? u : 'https://wa.me/40749255366?text='+encodeURIComponent(a.getAttribute('data-wa-text'));
+  });
+
+  // 3) Înapoi sus
+  var tt=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){tt.classList.toggle('show',window.scrollY>700);},{passive:true});
+  tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+</body>
+</html>

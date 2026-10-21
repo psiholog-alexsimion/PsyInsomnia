@@ -2,15 +2,17 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-LEfI6wtiATeJWC0ehfYamH0fHWvD5leT9b99SJsRVXU=' 'sha256-HTJWwW0NiagDhiPStDlWFgRfvxnbZf7MFAMEYcki/9E=' 'sha256-4u8i8gBZZvOJ7wc0ZJEDDKN+lXK9ef6OR68KVNjnEOg='; style-src 'unsafe-inline'; img-src data: https://i.ytimg.com; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>PsyInsomnia — Instrument CBT-I pentru insomnie</title>
-<meta name="description" content="Instrument gratuit în limba română pentru insomnie: chestionar ISI, jurnal de somn, calculator de restricție a somnului și ghiduri practice bazate pe CBT-I, create de psihologi clinicieni.">
+<meta name="description" content="Instrument gratuit în limba română pentru insomnie: jurnal de somn, calculator de restricție a somnului și ghiduri practice bazate pe CBT-I, create de psihologi clinicieni.">
 <meta name="theme-color" content="#131A2B">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="PsyInsomnia">
 <meta property="og:title" content="PsyInsomnia — Instrument CBT-I pentru insomnie">
-<meta property="og:description" content="Chestionar ISI, jurnal de somn și calculator de restricție a somnului, cu ghiduri practice bazate pe CBT-I. Datele rămân doar în browserul tău.">
+<meta property="og:description" content="Jurnal de somn și calculator de restricție a somnului, cu ghiduri practice bazate pe CBT-I. Datele rămân doar în browserul tău.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23131A2B'/%3E%3Cpath d='M21 23a9 9 0 0 1-9-15 7.5 7.5 0 1 0 9 15z' fill='%23B8863B'/%3E%3C/svg%3E">
 <script>
@@ -286,7 +288,7 @@
   .flow{background:var(--card);border-bottom:1px solid var(--line);padding:34px 0;}
   .flow h2{font-size:1.15rem;margin:0 0 4px;font-weight:600;}
   .flow p.sub{margin:0 0 18px;color:var(--muted);font-size:0.92rem;}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
   .step{display:block;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:4px;padding:14px 16px;background:var(--paper);position:relative;transition:border-color .15s;}
   .step:hover{border-color:var(--accent);}
   .step .n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--line);color:var(--ink);font-weight:700;font-size:0.82rem;margin-bottom:8px;}
@@ -434,17 +436,41 @@
   .ear-front{transform-box:fill-box;transform-origin:0% 100%;animation:twitch 7s ease-in-out infinite;}
   @keyframes twitch{0%,86%,100%{transform:rotate(0);}89%{transform:rotate(-5deg);}92%{transform:rotate(2deg);}95%{transform:rotate(0);}}
   @media (prefers-reduced-motion: reduce){.ear-front{animation:none;}}
+
+/* ===== QA: contrast (WCAG AA), tap targets, iOS zoom ===== */
+:root{--muted:#5C6068;--accent-text:#82591A;--good-text:#3B6650;--warn-text:#8F4039;}
+a{color:var(--accent-text);}
+.kicker,.person .role,.step .tag,.btn.ghost,.acc-head .plus,details.article summary::after,
+details.article summary:hover .a-title,.profile-menu summary:hover,.privacy-note summary:hover,.icon-btn:hover{color:var(--accent-text);}
+.badge.b0,.se-good,.compare-delta.better{color:var(--good-text);}
+.badge.b1{color:#6F6230;}
+.badge.b2{color:#7D5016;}
+.se-mid{color:#6F571A;}
+.badge.b3,.se-low,.compare-delta.worse,.btn.danger{color:var(--warn-text);}
+.icon-btn{min-width:40px;min-height:40px;padding:8px 10px;font-size:1rem;}
+input[type=text],input[type=date],input[type=time],input[type=number],select,textarea{font-size:1rem;}
+
+/* ===== Linkuri legale ===== */
+.foot-policy{display:flex;flex-wrap:wrap;gap:6px 20px;margin:0 0 16px;font-size:0.82rem;}
+.foot-policy a{color:#C7CCDA;text-decoration:underline;text-underline-offset:3px;}
+.foot-policy a:hover,.foot-policy a:focus-visible{color:#FFFFFF;}
+.notice a{color:#6B3733;text-decoration:underline;font-weight:600;}
+
+/* ===== A11y: skip link / main ===== */
+.skip-link{position:absolute;left:12px;top:-64px;z-index:1000;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:4px;font-size:0.92rem;text-decoration:none;}
+.skip-link:focus{top:12px;outline:2px solid var(--accent-soft);outline-offset:2px;}
+main:focus{outline:none;}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Sari la conținut</a>
 
 <nav class="topnav">
   <div class="wrap">
     <a href="#acasa" class="brand">Psy<span>Insomnia</span></a>
-    <button id="navToggle" aria-label="Meniu">☰</button>
+    <button type="button" id="navToggle" aria-label="Meniu" aria-controls="navLinks" aria-expanded="false">☰</button>
     <div class="navlinks" id="navLinks">
       <a href="#despre">Despre noi</a>
-      <a href="#isi">Evaluare</a>
       <a href="#tehnici">Tehnici</a>
       <a href="#articole">Articole</a>
       <a href="#comunitate">Comunitate</a>
@@ -454,13 +480,15 @@
   </div>
 </nav>
 
+<noscript><div class="notice" style="display:block"><div class="wrap" style="max-width:1040px;"><span>Jurnalul și calculatoarele au nevoie de JavaScript activat în browser. Articolele și informațiile se pot citi și fără el.</span></div></div></noscript>
 <div class="notice" id="noticeBar" hidden>
   <div class="wrap" style="max-width:1040px;">
-    <span>Instrument educațional bazat pe CBT-I — nu înlocuiește evaluarea clinică. În situații de criză, sună la <b>112</b>.</span>
+    <span>Instrument educațional bazat pe CBT-I — nu înlocuiește evaluarea clinică. În situații de criză, sună la <b>112</b>. <a href="confidentialitate.html">Confidențialitate</a> · <a href="termeni.html">Termeni</a></span>
     <button type="button" id="noticeOk" class="btn small ghost">Am înțeles</button>
   </div>
 </div>
 
+<main id="main" tabindex="-1">
 <header class="hero brand-hero" id="acasa">
   <svg class="moon" viewBox="0 0 220 220" aria-hidden="true">
     <defs><radialGradient id="fur" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F0E8"/><stop offset="1" stop-color="#DCD3C2"/></radialGradient><radialGradient id="furHaunch" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#EFE9DD"/><stop offset="1" stop-color="#D3C9B6"/></radialGradient><linearGradient id="earIn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EFB9BC"/><stop offset="1" stop-color="#F7D9D6"/></linearGradient><mask id="crescent"><rect width="220" height="220" fill="#fff"/><circle cx="142" cy="88" r="68" fill="#000"/></mask></defs>
@@ -517,7 +545,7 @@
     <p class="tagline">The Psychology of Better Sleep</p>
     <p class="lead">Înțelege de ce nu dormi și recapătă somnul prin metode psihologice bazate pe dovezi. CBT-I, tratamentul recomandat de prim rang pentru insomnie, într-un singur loc.</p>
     <div class="hero-cta">
-      <a href="#isi" class="btn">Fă testul gratuit (2 minute)</a>
+      <a href="#jurnal" class="btn">Începe jurnalul de somn (gratuit)</a>
       <a href="#contact" class="btn secondary">Programează o consultație</a>
     </div>
     <ul class="trust">
@@ -526,7 +554,7 @@
       <li>✓ Datele rămân doar la tine</li>
     </ul>
     <a href="#despre" class="hero-who" aria-label="Cunoaște specialiștii">
-      <span class="avs"><img id="heroAv1" alt="" width="40" height="40"><img id="heroAv2" alt="" width="40" height="40"></span>
+      <span class="avs"><img id="heroAv1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="40" height="40"><img id="heroAv2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="40" height="40"></span>
       <span>Alex Simion &amp; Silvana Capris <em>→ cunoaște echipa</em></span>
     </a>
   </div>
@@ -560,12 +588,11 @@
 <div class="flow" id="flow">
   <div class="wrap" style="max-width:1040px;">
     <h2>Cum folosești protocolul</h2>
-    <p class="sub">Patru pași, în ordine. Pagina îți arată automat unde ești și care e următorul pas.</p>
+    <p class="sub">Trei pași, în ordine. Pagina îți arată automat unde ești și care e următorul pas.</p>
     <div class="steps" id="steps">
-      <a class="step" href="#isi" data-step="1"><span class="n">1</span><b>Evaluează-te (ISI)</b><span class="s">7 întrebări, ~2 minute</span></a>
-      <a class="step" href="#jurnal" data-step="2"><span class="n">2</span><b>Completează jurnalul</b><span class="s">În fiecare dimineață, ideal 7–14 nopți</span></a>
-      <a class="step" href="#calculator" data-step="3"><span class="n">3</span><b>Calculează fereastra de somn</b><span class="s">Necesită minimum 3 nopți în jurnal</span></a>
-      <a class="step" href="#progres" data-step="4"><span class="n">4</span><b>Urmărește progresul</b><span class="s">Repetă ISI săptămânal</span></a>
+      <a class="step" href="#jurnal" data-step="1"><span class="n">1</span><b>Completează jurnalul</b><span class="s">În fiecare dimineață, ideal 7–14 nopți</span></a>
+      <a class="step" href="#calculator" data-step="2"><span class="n">2</span><b>Calculează fereastra de somn</b><span class="s">Necesită minimum 3 nopți în jurnal</span></a>
+      <a class="step" href="#progres" data-step="3"><span class="n">3</span><b>Urmărește progresul</b><span class="s">Repetă săptămânal</span></a>
     </div>
   </div>
 </div>
@@ -586,7 +613,7 @@
   </div>
   <details class="privacy-note">
     <summary>Despre datele tale și copia de siguranță</summary>
-    <p>Datele fiecărui profil sunt salvate local, doar în acest browser și pe acest dispozitiv — nu sunt trimise către niciun server. Schimbarea browserului sau ștergerea datelor de navigare le pierde definitiv, așa că folosește <b>Export</b> (în secțiunea Jurnal) pentru o copie de siguranță.</p>
+    <p>Datele fiecărui profil sunt salvate local, doar în acest browser și pe acest dispozitiv — nu sunt trimise către niciun server. Schimbarea browserului sau ștergerea datelor de navigare le pierde definitiv, așa că folosește <b>Export</b> (în secțiunea Jurnal) pentru o copie de siguranță. <a href="confidentialitate.html">Citește politica de confidențialitate</a>.</p>
   </details>
 </div>
 
@@ -596,24 +623,9 @@
     <div class="hero-stats" style="margin:0;border:0;padding:0;">
       <div class="hero-stat"><b id="statEntries">0</b><span>nopți înregistrate</span></div>
       <div class="hero-stat"><b id="statSE">—</b><span>eficiență de somn, medie 7 zile</span></div>
-      <div class="hero-stat"><b id="statISI">—</b><span>ultimul scor ISI</span></div>
     </div>
   </div>
 </div>
-
-<section id="isi">
-  <div class="wrap">
-    <p class="kicker">Evaluare</p>
-    <h2 class="title">Indicele de Severitate a Insomniei (ISI)</h2>
-    <p class="dek">7 întrebări, răspuns de la 0 la 4, gândindu-te la ultimele 2 săptămâni. Completează-l acum și repetă-l săptămânal — evoluția se vede în secțiunea Progres.</p>
-    <button type="button" class="btn isi-toggle" id="isiToggle" aria-expanded="false" aria-controls="isiBody"><span id="isiToggleLabel">Începe evaluarea</span> <span class="chev" aria-hidden="true">▾</span></button>
-    <div id="isiBody" hidden>
-      <div class="card" id="isiForm"></div>
-      <div class="isi-result" id="isiResult" style="display:none;"></div>
-      <p class="help-note">Un scor ridicat sau simptome care persistă merită discutate cu un specialist. <a href="#contact">Vezi cum poți programa o consultație</a>.</p>
-    </div>
-  </div>
-</section>
 
 <section class="alt" id="jurnal">
   <div class="wrap">
@@ -660,7 +672,7 @@
         <button class="btn ghost small" id="btnExportJson" type="button">Exportă toate datele (JSON)</button>
         <button class="btn ghost small" id="btnExportCsv" type="button">Exportă jurnalul (CSV)</button>
         <button class="btn ghost small" id="btnImportJson" type="button">Importă date (JSON)</button>
-        <input type="file" id="importFileInput" accept="application/json" class="visually-hidden">
+        <input type="file" id="importFileInput" accept="application/json" class="visually-hidden" aria-label="Importă fișier JSON">
       </div>
     </div>
 
@@ -687,7 +699,7 @@
     <button type="button" class="btn sec-toggle" data-target="calculatorBody" data-open="Deschide calculatorul" data-close="Ascunde calculatorul" aria-expanded="false" aria-controls="calculatorBody"><span class="lbl">Deschide calculatorul</span> <span class="chev" aria-hidden="true">▾</span></button>
     <div class="sec-body" id="calculatorBody" hidden>
 
-    <div class="disclaimer"><b>Înainte să începi:</b> restricția de somn nu este potrivită pentru toată lumea. Dacă ai epilepsie, tulburare bipolară, apnee de somn netratată sau conduci frecvent și ești expus riscului de somnolență, discută mai întâi cu medicul sau cu un specialist.</div>
+    <div class="disclaimer"><b>Înainte să începi:</b> restricția de somn nu este potrivită pentru toată lumea. Dacă ai epilepsie, tulburare bipolară, apnee de somn netratată, parasomnii (de exemplu somnambulism) sau conduci frecvent și ești expus riscului de somnolență, discută mai întâi cu medicul sau cu un specialist. Dacă în timpul restricției simți somnolență periculoasă pe parcursul zilei, mai ales la volan, oprește restricția și cere sfatul unui specialist.</div>
 
     <div class="card">
       <div class="field-row" style="grid-template-columns:1fr 1fr;">
@@ -738,15 +750,10 @@
   <div class="wrap">
     <p class="kicker">Evoluție</p>
     <h2 class="title">Progres în timp</h2>
-    <p class="dek">Scorul ISI ar trebui să scadă, iar eficiența somnului să crească și să se stabilizeze peste 85–90%, pe măsură ce protocolul avansează.</p>
+    <p class="dek">Eficiența somnului ar trebui să crească și să se stabilizeze peste 85–90%, pe măsură ce protocolul avansează.</p>
     <button type="button" class="btn sec-toggle" data-target="progresBody" data-open="Vezi progresul" data-close="Ascunde progresul" aria-expanded="false" aria-controls="progresBody"><span class="lbl">Vezi progresul</span> <span class="chev" aria-hidden="true">▾</span></button>
     <div class="sec-body" id="progresBody" hidden>
-    <div class="grid2">
-      <div class="chart-wrap">
-        <p style="font-weight:600;margin:0 0 14px;">Scor ISI</p>
-        <canvas id="isiChart" height="220"></canvas>
-        <div class="empty" id="isiChartEmpty">Completează chestionarul ISI pentru a vedea evoluția.</div>
-      </div>
+    <div class="grid2" style="grid-template-columns:1fr;">
       <div class="chart-wrap">
         <p style="font-weight:600;margin:0 0 14px;">Sleep Efficiency pe noapte</p>
         <canvas id="seChart" height="220"></canvas>
@@ -757,12 +764,7 @@
     <div class="card" style="margin-top:16px;">
       <p style="font-weight:600;margin:0 0 4px;">Comparație — început vs acum</p>
       <p style="font-size:0.85rem;color:var(--muted);margin:0;">Primele intrări comparate cu cele mai recente, pentru a vedea evoluția reală a protocolului.</p>
-      <div class="compare-grid">
-        <div class="compare-box">
-          <p class="label">Scor ISI — primul vs ultimul</p>
-          <div class="compare-nums" id="cmpIsiNums">— <span class="arrow">→</span> —</div>
-          <div class="compare-delta" id="cmpIsiDelta"></div>
-        </div>
+      <div class="compare-grid" style="grid-template-columns:1fr;">
         <div class="compare-box">
           <p class="label">Sleep Efficiency medie — prima jumătate vs ultima</p>
           <div class="compare-nums" id="cmpSeNums">— <span class="arrow">→</span> —</div>
@@ -812,15 +814,15 @@
       </details>
       <details class="article" id="art-simptome">
         <summary><span class="a-title">Simptomele insomniei: cum îți afectează ziua</span><span class="a-meta">Educație · 2 min</span></summary>
-        <div class="a-body"><p>Insomnia nu se vede doar noaptea. Cele mai frecvente efecte din timpul zilei:</p><ul><li>oboseală, energie scăzută, somn agitat</li><li>iritabilitate și schimbări de dispoziție</li><li>dificultăți de concentrare și probleme de memorie</li><li>reacții întârziate și probleme de coordonare</li><li>dureri de cap, probleme digestive</li><li>anxietate sau stare depresivă</li></ul><p>Dacă recunoști mai multe dintre ele și durează de săptămâni, completează chestionarul ISI din această pagină și discută rezultatul cu un specialist.</p></div>
+        <div class="a-body"><p>Insomnia nu se vede doar noaptea. Cele mai frecvente efecte din timpul zilei:</p><ul><li>oboseală, energie scăzută, somn agitat</li><li>iritabilitate și schimbări de dispoziție</li><li>dificultăți de concentrare și probleme de memorie</li><li>reacții întârziate și probleme de coordonare</li><li>dureri de cap, probleme digestive</li><li>anxietate sau stare depresivă</li></ul><p>Dacă recunoști mai multe dintre ele și durează de săptămâni, folosește jurnalul și calculatorul din această pagină și discută rezultatul cu un specialist.</p></div>
       </details>
       <details class="article" id="art-intrebari">
         <summary><span class="a-title">Întrebări care te ajută să descoperi sursa insomniei</span><span class="a-meta">Autoevaluare · 4 min</span></summary>
-        <div class="a-body"><p>Înainte de orice tehnică, merită să înțelegi ce întreține problema. Răspunde-ți sincer, de preferință în scris:</p><h4>Cum a început?</h4><ul><li>Când a început insomnia și ce s-a schimbat atunci?</li><li>Ce factori de stres au apărut?</li><li>Ce gânduri apar când nu poți dormi?</li></ul><h4>Cum arată ziua ta?</h4><ul><li>Ce faci înainte de culcare (telefon, laptop, televizor, citit)?</li><li>Ai ore regulate de somn? Ce se schimbă în weekend?</li><li>Faci mișcare? Când? (dimineața e de preferat)</li><li>Cât alcool, cafea și dulciuri consumi? Ieși la lumină naturală?</li></ul><h4>Ce te-ar putea influența?</h4><ul><li>Sforăi sau dormi lângă cineva care sforăie? Ai probleme de respirație pe nas sau gură?</li><li>Scrâșnești din dinți (bruxism)?</li><li>Ai afecțiuni medicale sau stări emoționale dificile? Mediul tău social e stresant?</li></ul><h4>Cum arată igiena somnului?</h4><ul><li>Ce pernă folosești și cât de confortabil ești în pat?</li><li>Ce temperatură e în cameră? (puțin mai rece decât ești obișnuit)</li><li>Dormi și ziua? Cât dormi în total?</li></ul><h4>Ce ai încercat deja?</h4><ul><li>Ce tratamente sau somnifere ai folosit?</li><li>Ai încercat psihoterapie (CBT, CBT-I, hipnoterapie)?</li></ul></div>
+        <div class="a-body"><p>Înainte de orice tehnică, merită să înțelegi ce întreține problema. Răspunde-ți sincer, de preferință în scris:</p><h4>Cum a început?</h4><ul><li>Când a început insomnia și ce s-a schimbat atunci?</li><li>Ce factori de stres au apărut?</li><li>Ce gânduri apar când nu poți dormi?</li></ul><h4>Cum arată ziua ta?</h4><ul><li>Ce faci înainte de culcare (telefon, laptop, televizor, citit)?</li><li>Ai ore regulate de somn? Ce se schimbă în weekend?</li><li>Faci mișcare? Când? (dimineața e de preferat)</li><li>Cât alcool, cafea și dulciuri consumi? Ieși la lumină naturală?</li></ul><h4>Ce te-ar putea influența?</h4><ul><li>Sforăi sau dormi lângă cineva care sforăie? Ai probleme de respirație pe nas sau gură?</li><li>Scrâșnești din dinți (bruxism)?</li><li>Ai afecțiuni medicale sau stări emoționale dificile? Mediul tău social e stresant?</li></ul><h4>Cum arată igiena somnului?</h4><ul><li>Ce pernă folosești și cât de confortabil ești în pat?</li><li>Ce temperatură e în cameră? (ideal 16–19 °C)</li><li>Dormi și ziua? Cât dormi în total?</li></ul><h4>Ce ai încercat deja?</h4><ul><li>Ce tratamente sau somnifere ai folosit?</li><li>Ai încercat psihoterapie (CBT, CBT-I, hipnoterapie)?</li></ul></div>
       </details>
       <details class="article" id="art-cbti">
         <summary><span class="a-title">CBT-I: terapia cognitiv-comportamentală pentru insomnie</span><span class="a-meta">Terapie · 5 min</span></summary>
-        <div class="a-body"><p>CBT-I este abordarea recomandată de prim rang pentru insomnia cronică. Durează de obicei <b>4–8 săptămâni</b> și combină mai multe tehnici:</p><ul><li><b>Jurnalul somnului</b> — baza de la care pornește totul (îl găsești în această pagină).</li><li><b>Restricția somnului</b> — limitezi timpul petrecut în pat la cât dormi de fapt, în medie (dar nu sub 5,5 ore), cu o oră fixă de trezire. Te culci doar când simți că adormi cu adevărat. Când somnul se consolidează (eficiența somnului de cel puțin 90%), prelungești timpul în pat cu 15–20 de minute. Nu se potrivește tuturor, deci se face de preferință cu un specialist.</li><li><b>Controlul stimulilor</b> — patul e doar pentru somn. Dacă nu adormi în aproximativ 20 de minute, ridică-te și fă ceva liniștitor.</li><li><b>Timp alocat grijilor</b> — petreci 20 de minute cu grijile (într-un „jurnal de griji”), apoi te oprești voluntar. Dacă ele apar noaptea, le notezi și le lași pentru a doua zi.</li><li><b>Restructurare cognitivă</b> — înlocuiești gândurile catastrofice cu unele realiste: din „trebuie să dorm 8 ore” în „dorm cât are nevoie corpul”.</li><li><b>Relaxare</b> — relaxare musculară progresivă, respirație, meditație ghidată.</li></ul><p>Mai multe resurse: <a href="https://www.selfhelptoons.com/learn-to-sleep-better-with-cbt-for-insomnia-cbti/" target="_blank" rel="noopener">Learn to Sleep Better with CBT for Insomnia</a>.</p></div>
+        <div class="a-body"><p>CBT-I este abordarea recomandată de prim rang pentru insomnia cronică. Durează de obicei <b>4–8 săptămâni</b> și combină mai multe tehnici:</p><ul><li><b>Jurnalul somnului</b> — baza de la care pornește totul (îl găsești în această pagină).</li><li><b>Restricția somnului</b> — limitezi timpul petrecut în pat la cât dormi de fapt, în medie (dar nu sub 5,5 ore), cu o oră fixă de trezire. Te culci doar când simți că adormi cu adevărat. Când somnul se consolidează (eficiența somnului de cel puțin 90%), prelungești timpul în pat cu 15–20 de minute. Nu se potrivește tuturor, deci se face de preferință cu un specialist.</li><li><b>Controlul stimulilor</b> — patul e doar pentru somn. Dacă nu adormi în aproximativ 20 de minute, ridică-te și fă ceva liniștitor.</li><li><b>Timp alocat grijilor</b> — petreci 15–20 de minute cu grijile, în afara patului și de preferat seara devreme (într-un „jurnal de griji”), apoi te oprești voluntar. Dacă ele apar noaptea, le notezi și le lași pentru a doua zi.</li><li><b>Restructurare cognitivă</b> — înlocuiești gândurile catastrofice cu unele realiste: din „trebuie să dorm 8 ore” în „dorm cât are nevoie corpul”.</li><li><b>Relaxare</b> — relaxare musculară progresivă, respirație, meditație ghidată.</li></ul><p>Mai multe resurse: <a href="https://www.selfhelptoons.com/learn-to-sleep-better-with-cbt-for-insomnia-cbti/" target="_blank" rel="noopener">Learn to Sleep Better with CBT for Insomnia</a>.</p></div>
       </details>
       <details class="article" id="art-relaxare">
         <summary><span class="a-title">Tehnici rapide pentru nopțile grele</span><span class="a-meta">Practic · 3 min</span></summary>
@@ -837,6 +839,10 @@
       <details class="article" id="art-personal">
         <summary><span class="a-title">Ce funcționează pentru mine: obiceiuri personale</span><span class="a-meta">De Alex Simion · 2 min</span></summary>
         <div class="a-body"><p>Nu orice funcționează pentru toată lumea, dar iată ce folosesc eu și mi se potrivește:</p><ul><li>Ascult seriale pe care le știu deja, cu ochii închiși.</li><li>Încetinesc ritmul cu 30–60 de minute înainte de somn.</li><li>Citesc sau ascult un audiobook ori o meditație ghidată.</li><li>Mă așez în pat doar când mi se face somn și păstrez un interval constant de somn.</li><li>Fac mișcare dimineața, niciodată seara după ora 21.</li><li>Nu mai mănânc după 20–21.</li><li>Țin camera răcoroasă.</li><li>Dacă nu adorm, ascult ceva liniștitor sau mă ridic și caut o activitate relaxantă.</li><li>Rămân ocupat în timpul zilei, cu o pauză între muncă și timpul personal.</li></ul></div>
+      </details>
+      <details class="article" id="art-personal-silvana">
+        <summary><span class="a-title">Ce funcționează pentru mine: obiceiuri personale</span><span class="a-meta">De Silvana Capris · 3 min</span></summary>
+        <div class="a-body"><p>Nu orice soluție funcționează pentru toată lumea, dar iată ce folosesc eu și mi se potrivește:</p><ul><li>Sunt atentă ca, înainte cu cel puțin 30 min de somn, să intru într-un soi de stare în care las gândurile din ziua respectivă să vină ca să văd ce a rămas nerezolvat… Dar… pe rând. Nu toate deodată. Și apoi le așez pe fiecare: fie parchez problema… fie o rezolv, după caz. Adică… mă asigur că eu personal îmi închid fișierele creierului meu. Dau o rezoluție. Nu las programele din mintea mea să ruleze în continuare. Procedez exact cum fac când închid un laptop după ce mi-am terminat treaba: 1. Verific ce am făcut. 2. Salvez. 3. Închid fișierul.</li><li>Fac o plimbare în aer liber, prin preajma… înainte de ora de somn. Asta ajută de multe ori în claritate. Și de multe ori efectuez pașii de mai sus în timpul plimbării de seară.</li><li>Negociez cu creierul în primele 10–15 min de nesomn: dacă nu adorm în următoarele 15–20 min, mă ridic și caut o activitate plictisitoare sau pe care nu îmi place deloc să o fac… și mă țin de cuvânt. Adică… mă ridic și fac ceea ce am zis că fac. Astfel creierul are 3 alternative: ori adorme… ori continuă să suporte activitatea… ori îmi arată ce program a rămas încă activ. Și atunci: ori parchez problema… ori o soluționez.</li><li>Citesc lent, rar și la o lumină caldă și de intensitate joasă o carte plictisitoare. Dacă cartea e interesantă… gata! … sunt prinsă de conținut și nu mă culc până ce nu o termin… deci trebuie să fie o carte plictisitoare sau neutră.</li><li>Ascult un audiobook ori o meditație ghidată, dar nu funcționează mereu.</li><li>Țin camera întunecoasă și ușor răcoroasă, dar plapuma trebuie să fie confortabilă.</li><li>Sunt atentă la ritmul meu biologic. Am observat că, dacă depășesc un anumit moment al nopții, îmi devine mult mai greu să adorm.</li><li>Nu transform somnul într-o performanță. Cu cât încerc mai mult să îl controlez, cu atât risc să devină încă o problemă de rezolvat.</li></ul></div>
       </details>
       <details class="article" id="art-ajutor">
         <summary><span class="a-title">Când să ceri ajutor de specialitate</span><span class="a-meta">Orientare · 2 min</span></summary>
@@ -881,11 +887,11 @@
     <div class="sec-body" id="resurseBody" hidden>
 
     <div class="video-grid">
-    <a class="video" href="https://www.youtube.com/watch?v=0b3VadMr7HI" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/0b3VadMr7HI/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
-    <a class="video" href="https://www.youtube.com/watch?v=JiD72cZ5mcU" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/JiD72cZ5mcU/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
-    <a class="video" href="https://www.youtube.com/watch?v=O14QcVg38FA" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/O14QcVg38FA/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
-    <a class="video" href="https://www.youtube.com/watch?v=Us8n8VBQn_c" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/Us8n8VBQn_c/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
-    <a class="video" href="https://www.youtube.com/watch?v=y1qBsNIGSY0" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/y1qBsNIGSY0/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=0b3VadMr7HI" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/0b3VadMr7HI/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=JiD72cZ5mcU" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/JiD72cZ5mcU/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=O14QcVg38FA" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/O14QcVg38FA/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=Us8n8VBQn_c" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/Us8n8VBQn_c/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
+    <a class="video" href="https://www.youtube.com/watch?v=y1qBsNIGSY0" target="_blank" rel="noopener" aria-label="Deschide videoclipul pe YouTube"><img src="https://i.ytimg.com/vi/y1qBsNIGSY0/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="play" aria-hidden="true">▶</span><span class="yt">Vezi pe YouTube ↗</span></a>
     </div>
 
     <div class="res-links">
@@ -952,6 +958,8 @@
   </div>
 </section>
 
+</main>
+
 <button id="toTop" type="button" aria-label="Înapoi sus">↑</button>
 
 <footer class="site-footer">
@@ -967,7 +975,6 @@
         <h4>Navigare</h4>
         <ul class="foot-links">
           <li><a href="#despre">Despre noi</a></li>
-          <li><a href="#isi">Evaluare</a></li>
           <li><a href="#tehnici">Tehnici</a></li>
           <li><a href="#articole">Articole</a></li>
           <li><a href="#comunitate">Comunitate</a></li>
@@ -990,6 +997,14 @@
     </div>
     <div class="foot-legal">
       <p><b>Important:</b> instrument educațional bazat pe CBT-I. Nu înlocuiește o evaluare clinică individuală și nu oferă diagnostic. În situații de criză, sună la <b>112</b>.</p>
+      <nav class="foot-policy" aria-label="Informații legale și resurse oficiale">
+        <a href="confidentialitate.html">Politica de confidențialitate</a>
+        <a href="confidentialitate.html#cookie-uri">Cookie-uri și stocare locală</a>
+        <a href="termeni.html">Termeni și condiții</a>
+        <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC – Soluționarea alternativă a litigiilor (SAL)</a>
+        <a href="https://www.dataprotection.ro/" target="_blank" rel="noopener">ANSPDCP</a>
+        <a href="https://www.copsi.ro/" target="_blank" rel="noopener">Colegiul Psihologilor din România</a>
+      </nav>
       <div class="foot-bottom">
         <span>© 2026 PsyInsomnia</span>
         <span>Creat de <a href="https://www.psyalexsimion.com" target="_blank" rel="noopener">Alex Simion</a> · <a href="#acasa">Sus ↑</a></span>
@@ -1001,9 +1016,32 @@
 <script>
 (function(){
 
+// ---------- storage with in-memory fallback (browsere care blochează localStorage) ----------
+const store = (function(){
+  let ls = null;
+  try{ ls = window.localStorage; const t = '__psy_t'; ls.setItem(t,'1'); ls.removeItem(t); }catch(e){ ls = null; }
+  const mem = {};
+  const has = function(k){ return Object.prototype.hasOwnProperty.call(mem, k); };
+  const api = {
+    persistent: !!ls,
+    onfail: null,
+    getItem: function(k){ if(has(k)) return mem[k]; if(ls){ try{ return ls.getItem(k); }catch(e){} } return null; },
+    setItem: function(k, v){
+      if(ls){
+        try{ ls.setItem(k, v); delete mem[k]; return; }
+        catch(e){ if(api.persistent){ api.persistent = false; if(api.onfail){ try{ api.onfail(); }catch(e2){} } } }
+      }
+      mem[k] = String(v);
+    },
+    removeItem: function(k){ delete mem[k]; if(ls){ try{ ls.removeItem(k); }catch(e){} } }
+  };
+  return api;
+})();
+
+
 // ---------- generic storage helpers ----------
-function load(key){ try{ const v = JSON.parse(localStorage.getItem(key)); return v === null || v === undefined ? [] : v; }catch(e){ return []; } }
-function save(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); return true; }catch(e){ return false; } }
+function load(key){ try{ const v = JSON.parse(store.getItem(key)); return v === null || v === undefined ? [] : v; }catch(e){ return []; } }
+function save(key, val){ try{ store.setItem(key, JSON.stringify(val)); return true; }catch(e){ return false; } }
 
 // ---------- profiles ----------
 const LS_PROFILES = 'cbti_profiles';
@@ -1017,22 +1055,22 @@ function makeProfileId(){ return 'p_' + Date.now().toString(36) + Math.random().
 function ensureActiveProfile(){
   let profiles = getProfiles();
   if(profiles.length === 0){
-    const p = { id: makeProfileId(), name: 'Pacient 1' };
+    const p = { id: makeProfileId(), name: 'Profil 1' };
     profiles = [p];
     saveProfiles(profiles);
-    localStorage.setItem(LS_ACTIVE, p.id);
+    store.setItem(LS_ACTIVE, p.id);
     return p.id;
   }
-  let active = localStorage.getItem(LS_ACTIVE);
+  let active = store.getItem(LS_ACTIVE);
   if(!active || !profiles.find(p=>p.id===active)){
     active = profiles[0].id;
-    localStorage.setItem(LS_ACTIVE, active);
+    store.setItem(LS_ACTIVE, active);
   }
   return active;
 }
 
 function getActiveProfileId(){ return ensureActiveProfile(); }
-function setActiveProfileId(id){ localStorage.setItem(LS_ACTIVE, id); }
+function setActiveProfileId(id){ store.setItem(LS_ACTIVE, id); }
 
 function DIARY_KEY(){ return 'cbti_diary::' + getActiveProfileId(); }
 function ISI_KEY(){ return 'cbti_isi::' + getActiveProfileId(); }
@@ -1056,13 +1094,10 @@ function refreshAllForProfileChange(){
   cancelDiaryEdit();
   renderDiary();
   renderStats();
-  renderISIChart();
   renderSEChart();
   renderComparison();
-  document.getElementById('isiResult').style.display = 'none';
   document.getElementById('calcResult').style.display = 'none';
   document.getElementById('calcEmpty').style.display = 'block';
-  document.querySelectorAll('#isiForm input[type=radio]').forEach(r=> r.checked = false);
 }
 
 document.getElementById('profileSelect').addEventListener('change', function(){
@@ -1071,7 +1106,7 @@ document.getElementById('profileSelect').addEventListener('change', function(){
 });
 
 document.getElementById('btnNewProfile').addEventListener('click', function(){
-  const name = prompt('Numele noului profil (ex: numele pacientului):');
+  const name = prompt('Numele noului profil (un prenume sau o poreclă; evită datele de identificare):');
   if(!name || !name.trim()) return;
   const profiles = getProfiles();
   const p = { id: makeProfileId(), name: name.trim() };
@@ -1099,9 +1134,10 @@ document.getElementById('btnDeleteProfile').addEventListener('click', function()
   if(profiles.length <= 1) return;
   const active = getActiveProfileId();
   const current = profiles.find(p=>p.id===active);
-  if(!confirm('Ștergi profilul "'+(current?current.name:'')+'" și tot jurnalul + istoricul ISI asociate? Această acțiune nu poate fi anulată.')) return;
-  localStorage.removeItem('cbti_diary::'+active);
-  localStorage.removeItem('cbti_isi::'+active);
+  if(!confirm('Ștergi profilul "'+(current?current.name:'')+'" și toate datele asociate (jurnal, calculator)? Această acțiune nu poate fi anulată.')) return;
+  store.removeItem('cbti_diary::'+active);
+  store.removeItem('cbti_isi::'+active);
+  store.removeItem('cbti_va::'+active);
   const remaining = profiles.filter(p=>p.id!==active);
   saveProfiles(remaining);
   setActiveProfileId(remaining[0].id);
@@ -1131,82 +1167,31 @@ function applyNavMode(){
     navLinks.style.padding='0';
   }
 }
-navToggle.addEventListener('click', ()=>{
-  navLinks.style.display = navLinks.style.display === 'none' ? 'flex' : 'none';
+function setNavOpen(open){
+  navLinks.style.display = open ? 'flex' : 'none';
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+navToggle.addEventListener('click', ()=>{ setNavOpen(navLinks.style.display === 'none'); });
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && window.innerWidth < 720 && navLinks.style.display !== 'none'){ setNavOpen(false); navToggle.focus(); }
 });
 window.addEventListener('resize', applyNavMode);
 applyNavMode();
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
-  if(window.innerWidth < 720) navLinks.style.display='none';
+  if(window.innerWidth < 720) setNavOpen(false);
 }));
 
-// ---------- ISI ----------
-const ISI_QUESTIONS = [
-  "Dificultate de a adormi",
-  "Dificultate de a rămâne adormit(ă)",
-  "Probleme legate de trezirea prea devreme dimineața",
-  "Cât de mulțumit(ă) / nemulțumit(ă) ești de somnul tău actual",
-  "Cât de vizibil crezi că este, pentru ceilalți, impactul problemei tale de somn asupra calității vieții",
-  "Cât de îngrijorat(ă) / deranjat(ă) ești de problema ta actuală de somn",
-  "În ce măsură crezi că problema de somn interferează cu funcționarea ta zilnică (oboseală, dispoziție, concentrare etc.)"
-];
-const ISI_SEV = ["0 — deloc","1 — ușor","2 — moderat","3 — sever","4 — foarte sever"];
-const ISI_SAT = ["0 — foarte mulțumit(ă)","1 — mulțumit(ă)","2 — nici mulțumit(ă), nici nemulțumit(ă)","3 — nemulțumit(ă)","4 — foarte nemulțumit(ă)"];
-const ISI_AMT = ["0 — deloc","1 — puțin","2 — oarecum","3 — mult","4 — foarte mult"];
-const ISI_SCALES = [ISI_SEV, ISI_SEV, ISI_SEV, ISI_SAT, ISI_AMT, ISI_AMT, ISI_AMT];
-
-const isiForm = document.getElementById('isiForm');
-let isiHTML = '<p style="margin:0 0 14px;color:var(--muted);font-size:.92rem;">Răspunde gândindu-te la ultimele 2 săptămâni.</p>';
-ISI_QUESTIONS.forEach((q, i)=>{
-  isiHTML += '<div class="isi-q"><p>'+(i+1)+'. '+q+'</p><div class="scale">';
-  ISI_SCALES[i].forEach((lab, v)=>{
-    isiHTML += '<label><input type="radio" name="isi_q'+i+'" value="'+v+'">'+lab+'</label>';
-  });
-  isiHTML += '</div></div>';
-});
-isiHTML += '<div style="padding-top:20px;"><button class="btn" id="isiSubmit" type="button">Calculează scorul</button></div>';
-isiForm.innerHTML = isiHTML;
-
-function interpretISI(total){
-  if(total<=7) return {label:'Fără insomnie clinică', cls:'b0'};
-  if(total<=14) return {label:'Insomnie subclinică', cls:'b1'};
-  if(total<=21) return {label:'Insomnie moderată', cls:'b2'};
-  return {label:'Insomnie severă', cls:'b3'};
+// ---------- Date ale calculatorului VA (pagină separată): incluse doar în backup ----------
+const VA_ROWS = 7;
+function VA_KEY(){ return 'cbti_va::' + getActiveProfileId(); }
+function emptyVaRow(){ return {date:'',bed:'',sol:'',awk:'',waso:'',fw:'',up:'',q:''}; }
+function loadVa(){
+  const v = load(VA_KEY());
+  const rows = Array.isArray(v) ? v.slice(0, VA_ROWS) : [];
+  while(rows.length < VA_ROWS) rows.push(emptyVaRow());
+  return rows.map(function(r){ return Object.assign(emptyVaRow(), r || {}); });
 }
-
-document.getElementById('isiSubmit').addEventListener('click', function(){
-  let total = 0, answered = 0;
-  for(let i=0;i<7;i++){
-    const sel = isiForm.querySelector('input[name="isi_q'+i+'"]:checked');
-    if(sel){ total += parseInt(sel.value,10); answered++; }
-  }
-  if(answered < 7){
-    alert('Te rog răspunde la toate cele 7 întrebări.');
-    return;
-  }
-  const interp = interpretISI(total);
-  const resultBox = document.getElementById('isiResult');
-  resultBox.style.display = 'block';
-  resultBox.innerHTML =
-    '<span class="score">'+total+'<span style="font-size:1rem;color:var(--muted);font-family:\'Inter\',sans-serif;"> / 28</span></span>'+
-    '<div style="margin-top:8px;"><span class="badge '+interp.cls+'">'+interp.label+'</span></div>';
-
-  const todayStr = localDateStr();
-  const history = load(ISI_KEY());
-  const existingIdx = history.findIndex(h=>h.date===todayStr);
-  if(existingIdx >= 0){
-    if(confirm('Ai completat deja chestionarul ISI azi. Vrei să suprascrii scorul anterior din această zi?')){
-      history[existingIdx] = {date: todayStr, total};
-      save(ISI_KEY(), history);
-    }
-  } else {
-    history.push({date: todayStr, total});
-    save(ISI_KEY(), history);
-  }
-  renderStats();
-  renderISIChart();
-  renderComparison();
-});
+function saveVa(rows){ save(VA_KEY(), rows); }
 
 // ---------- Diary ----------
 function localDateStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
@@ -1232,6 +1217,7 @@ let editingIndex = null;
 
 const diaryForm = document.getElementById('diaryForm');
 document.getElementById('d_date').value = localDateStr();
+document.getElementById('d_date').max = localDateStr();
 
 function cancelDiaryEdit(){
   editingIndex = null;
@@ -1249,12 +1235,12 @@ diaryForm.addEventListener('submit', function(e){
   const entry = {
     date: document.getElementById('d_date').value,
     bed: document.getElementById('d_bed').value,
-    latency: parseInt(document.getElementById('d_latency').value,10) || 0,
-    awake: parseInt(document.getElementById('d_awake').value,10) || 0,
+    latency: Math.max(0, parseInt(document.getElementById('d_latency').value,10) || 0),
+    awake: Math.max(0, parseInt(document.getElementById('d_awake').value,10) || 0),
     finalwake: document.getElementById('d_finalwake').value,
     up: document.getElementById('d_up').value,
     quality: parseInt(document.getElementById('d_quality').value,10),
-    nap: parseInt(document.getElementById('d_nap').value,10) || 0,
+    nap: Math.max(0, parseInt(document.getElementById('d_nap').value,10) || 0),
     note: (document.getElementById('d_note').value || '').trim(),
   };
   if(!entry.date || !entry.bed || !entry.finalwake || !entry.up){
@@ -1284,9 +1270,10 @@ diaryForm.addEventListener('submit', function(e){
 });
 
 function seTag(se){
-  if(se>=90) return '<span class="se-tag se-good">'+se.toFixed(0)+'%</span>';
-  if(se>=85) return '<span class="se-tag se-mid">'+se.toFixed(0)+'%</span>';
-  return '<span class="se-tag se-low">'+se.toFixed(0)+'%</span>';
+  const r = Math.round(se);
+  if(r>=90) return '<span class="se-tag se-good">'+r+'%</span>';
+  if(r>=85) return '<span class="se-tag se-mid">'+r+'%</span>';
+  return '<span class="se-tag se-low">'+r+'%</span>';
 }
 function escapeHtml(str){
   return String(str).replace(/[&<>"']/g, function(c){
@@ -1319,8 +1306,8 @@ function renderDiary(){
       '<td>'+entry.quality+'/5</td>'+
       '<td>'+(entry.nap ? entry.nap+' min' : '—')+'</td>'+
       '<td class="note-cell"'+noteTitle+'>'+noteDisplay+'</td>'+
-      '<td><button class="icon-btn" data-idx="'+realIndex+'" data-action="edit" title="Editează">✎</button>'+
-      '<button class="icon-btn danger" data-idx="'+realIndex+'" data-action="delete" title="Șterge">✕</button></td>';
+      '<td><button type="button" class="icon-btn" data-idx="'+realIndex+'" data-action="edit" title="Editează" aria-label="Editează noaptea din '+entry.date+'">✎</button>'+
+      '<button type="button" class="icon-btn danger" data-idx="'+realIndex+'" data-action="delete" title="Șterge" aria-label="Șterge noaptea din '+entry.date+'">✕</button></td>';
     body.appendChild(tr);
   });
   body.querySelectorAll('.icon-btn').forEach(btn=>{
@@ -1347,7 +1334,7 @@ function renderDiary(){
         document.getElementById('d_bed').value = entry.bed;
         document.getElementById('d_latency').value = entry.latency;
         document.getElementById('d_awake').value = entry.awake;
-        document.getElementById('d_finalwake').value = entry.finalwake;
+        document.getElementById('d_finalwake').value = entry.finalwake || entry.up;
         document.getElementById('d_up').value = entry.up;
         document.getElementById('d_quality').value = entry.quality;
         document.getElementById('d_nap').value = entry.nap || 0;
@@ -1384,7 +1371,8 @@ document.getElementById('btnExportJson').addEventListener('click', async functio
     exportedAt: new Date().toISOString(),
     profileName: profile ? profile.name : '',
     diary: load(DIARY_KEY()),
-    isiHistory: load(ISI_KEY())
+    isiHistory: load(ISI_KEY()),
+    va: loadVa()
   };
   const fname = 'psyinsomnia_' + (profile?profile.name.replace(/[^a-z0-9]+/gi,'-'):'export') + '_' + new Date().toISOString().slice(0,10) + '.json';
   await downloadBlob(fname, JSON.stringify(payload, null, 2), 'application/json');
@@ -1416,16 +1404,22 @@ document.getElementById('btnImportJson').addEventListener('click', function(){
 document.getElementById('importFileInput').addEventListener('change', function(e){
   const file = e.target.files[0];
   if(!file) return;
+  e.target.value = '';
+  if(file.size > 5*1024*1024){ alert('Fișierul este prea mare pentru un backup PsyInsomnia (maximum 5 MB).'); return; }
   const reader = new FileReader();
   reader.onload = function(){
     let parsed;
     try{ parsed = JSON.parse(reader.result); }
     catch(err){ alert('Fișierul nu este un JSON valid.'); return; }
-    if(!parsed || (!Array.isArray(parsed.diary) && !Array.isArray(parsed.isiHistory))){
+    if(!parsed || (!Array.isArray(parsed.diary) && !Array.isArray(parsed.isiHistory) && !Array.isArray(parsed.va))){
       alert('Fișierul nu are formatul așteptat (export din PsyInsomnia).');
       return;
     }
-    if(!confirm('Importul va înlocui jurnalul și istoricul ISI ale profilului curent cu datele din fișier. Continui?')) return;
+    if(parsed.version !== undefined && Number(parsed.version) > 1){
+      alert('Fișierul provine dintr-o versiune mai nouă a site-ului și nu poate fi importat aici.');
+      return;
+    }
+    if(!confirm('Importul va înlocui datele salvate ale profilului curent (jurnal, calculator) cu cele din fișier. Continui?')) return;
     const T = /^([01]\d|2[0-3]):[0-5]\d/, D = /^\d{4}-\d{2}-\d{2}$/;
     const num = function(v,min,max,def){ const n = parseInt(v,10); return isNaN(n) ? def : Math.min(max, Math.max(min, n)); };
     let skipped = 0;
@@ -1450,7 +1444,19 @@ document.getElementById('importFileInput').addEventListener('change', function(e
       cleanIsi.sort(function(a,b){ return a.date.localeCompare(b.date); });
       save(ISI_KEY(), cleanIsi);
     }
-    renderDiary(); renderStats(); renderISIChart(); renderSEChart(); renderComparison();
+    if(Array.isArray(parsed.va)){
+      const vrows = [];
+      parsed.va.slice(0, VA_ROWS).forEach(function(r){
+        r = r || {};
+        const tm = function(x){ return T.test(x) ? String(x).slice(0,5) : ''; };
+        const nm = function(x, max){ const n = parseInt(x,10); return isNaN(n) ? '' : String(Math.min(max, Math.max(0, n))); };
+        const qn = parseInt(r.q,10);
+        vrows.push({date: D.test(r.date) ? r.date : '', bed: tm(r.bed), sol: nm(r.sol,600), awk: nm(r.awk,30), waso: nm(r.waso,600), fw: tm(r.fw), up: tm(r.up), q: (qn>=1 && qn<=5) ? String(qn) : ''});
+      });
+      while(vrows.length < VA_ROWS) vrows.push(emptyVaRow());
+      saveVa(vrows);
+    }
+    renderDiary(); renderStats(); renderSEChart(); renderComparison();
     document.getElementById('calcResult').style.display='none';
     document.getElementById('calcEmpty').style.display='block';
     runCalculator();
@@ -1481,7 +1487,7 @@ function runCalculator(){
     sumTST += tst; sumSE += se;
   });
   const avgTSTmin = sumTST / recent.length;
-  const avgSE = sumSE / recent.length;
+  const avgSE = Math.round(sumSE / recent.length);
 
   let tibMin = avgTSTmin;
   const MIN_TIB = 5.5 * 60;
@@ -1546,7 +1552,7 @@ ACCORDION_DATA.forEach((item, i)=>{
   const div = document.createElement('div');
   div.className = 'acc-item' + (i===0 ? ' open' : '');
   div.innerHTML =
-    '<button class="acc-head" aria-expanded="'+(i===0)+'"><span>'+item.title+'</span><span class="plus">+</span></button>'+
+    '<button type="button" class="acc-head" aria-expanded="'+(i===0)+'"><span>'+item.title+'</span><span class="plus">+</span></button>'+
     '<div class="acc-body"><div class="acc-body-inner">'+item.body+'</div></div>';
   accWrap.appendChild(div);
   const head = div.querySelector('.acc-head');
@@ -1566,7 +1572,6 @@ window.addEventListener('load', ()=>{
 // ---------- Stats (hero) ----------
 function renderStats(){
   const diary = load(DIARY_KEY());
-  const isi = load(ISI_KEY());
   document.getElementById('statEntries').textContent = diary.length;
   if(diary.length){
     const recent = diary.slice(-7);
@@ -1576,31 +1581,12 @@ function renderStats(){
   } else {
     document.getElementById('statSE').textContent = '—';
   }
-  if(isi.length){
-    document.getElementById('statISI').textContent = isi[isi.length-1].total + '/28';
-  } else {
-    document.getElementById('statISI').textContent = '—';
-  }
+
 }
 
 // ---------- Comparison ----------
 function renderComparison(){
-  const isi = load(ISI_KEY());
   const diary = load(DIARY_KEY());
-
-  const isiNumsEl = document.getElementById('cmpIsiNums');
-  const isiDeltaEl = document.getElementById('cmpIsiDelta');
-  if(isi.length >= 2){
-    const first = isi[0].total, last = isi[isi.length-1].total;
-    isiNumsEl.innerHTML = first+' <span class="arrow">→</span> '+last;
-    const diff = last - first;
-    isiDeltaEl.textContent = (diff<=0 ? diff : '+'+diff) + ' puncte' + (diff<0?' (ameliorare)': diff>0 ? ' (agravare)' : ' (neschimbat)');
-    isiDeltaEl.className = 'compare-delta ' + (diff<0?'better':diff>0?'worse':'flat');
-  } else {
-    isiNumsEl.innerHTML = '— <span class="arrow">→</span> —';
-    isiDeltaEl.textContent = 'Necesită cel puțin 2 completări ISI.';
-    isiDeltaEl.className = 'compare-delta flat';
-  }
 
   const seNumsEl = document.getElementById('cmpSeNums');
   const seDeltaEl = document.getElementById('cmpSeDelta');
@@ -1622,35 +1608,8 @@ function renderComparison(){
 }
 
 // ---------- Charts ----------
-let isiChartInstance = null, seChartInstance = null;
+let seChartInstance = null;
 const CHART_FONT = "'Inter', sans-serif";
-
-function renderISIChart(){
-  const isi = load(ISI_KEY());
-  const canvas = document.getElementById('isiChart');
-  const emptyMsg = document.getElementById('isiChartEmpty');
-  if(isi.length === 0){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Completează chestionarul ISI pentru a vedea evoluția.'; return; }
-  if(typeof Chart === 'undefined'){ canvas.style.display='none'; emptyMsg.style.display='block'; emptyMsg.textContent='Graficul nu s-a putut încărca (verifică conexiunea la internet).'; return; }
-  canvas.style.display='block'; emptyMsg.style.display='none';
-  const labels = isi.map(e=>e.date);
-  const data = isi.map(e=>e.total);
-  if(isiChartInstance) isiChartInstance.destroy();
-  isiChartInstance = new Chart(canvas.getContext('2d'), {
-    type:'line',
-    data:{ labels, datasets:[{
-      label:'Scor ISI', data, borderColor:'#B8863B', backgroundColor:'rgba(184,134,59,0.12)',
-      fill:true, tension:0.25, pointRadius:4, pointBackgroundColor:'#B8863B'
-    }]},
-    options:{
-      responsive:true,
-      plugins:{ legend:{display:false}, tooltip:{titleFont:{family:CHART_FONT}, bodyFont:{family:CHART_FONT}} },
-      scales:{
-        y:{ min:0, max:28, ticks:{font:{family:CHART_FONT}}, grid:{color:'#DEDACE'} },
-        x:{ ticks:{font:{family:CHART_FONT}}, grid:{display:false} }
-      }
-    }
-  });
-}
 
 function renderSEChart(){
   const diary = load(DIARY_KEY());
@@ -1699,11 +1658,23 @@ function renderSEChart(){
 renderProfileSelect();
 renderDiary();
 renderStats();
-renderISIChart();
 renderSEChart();
 renderComparison();
 runCalculator();
 
+
+function showStorageWarning(){
+  const chip = document.querySelector('.privacy-chip');
+  if(chip){ chip.textContent = '⚠ Browserul tău blochează salvarea datelor — se păstrează doar cât timp pagina rămâne deschisă. Folosește Export.'; chip.style.color = 'var(--warn-text)'; }
+}
+if(!store.persistent) showStorageWarning();
+store.onfail = showStorageWarning;
+
+// Sincronizare între taburi: dacă datele se schimbă în alt tab (același site sau pagini ascunse), afișarea se actualizează.
+window.addEventListener('storage', function(e){
+  if(e.key && e.key.indexOf('cbti_') !== 0) return;
+  try{ renderProfileSelect(); renderDiary(); renderStats(); renderSEChart(); renderComparison(); }catch(err){}
+});
 })();
 </script>
 
@@ -1714,9 +1685,8 @@ runCalculator();
   function num(id){var v=parseInt(document.getElementById(id).textContent,10);return isNaN(v)?0:v;}
   function updateSteps(){
     var entries=num('statEntries');
-    var isi=document.getElementById('statISI').textContent.trim()!=='—';
-    var done=[isi, entries>=7, entries>=3, isi&&entries>=7];
-    var sub=[isi?'Completat':'7 întrebări, ~2 minute', entries+'/7 nopți înregistrate', entries>=3?'Gata de calculat':'Mai ai nevoie de '+Math.max(0,3-entries)+' nopți', done[3]?'Revino săptămânal':'Repetă ISI săptămânal'];
+    var done=[entries>=7, entries>=3, entries>=14];
+    var sub=[entries+'/7 nopți înregistrate', entries>=3?'Gata de calculat':'Mai ai nevoie de '+Math.max(0,3-entries)+' nopți', done[2]?'Revino săptămânal':'Repetă săptămânal'];
     var nextSet=false;
     steps.forEach(function(el,i){
       el.classList.toggle('done',done[i]);
@@ -1728,11 +1698,11 @@ runCalculator();
     });
   }
   var mo=new MutationObserver(updateSteps);
-  ['statEntries','statSE','statISI'].forEach(function(id){mo.observe(document.getElementById(id),{childList:true,characterData:true,subtree:true});});
+  ['statEntries','statSE'].forEach(function(id){mo.observe(document.getElementById(id),{childList:true,characterData:true,subtree:true});});
   updateSteps();
 
   // 2) Secțiune activă în meniu
-  var map={despre:'despre',flow:'isi',instrument:'isi',isi:'isi',jurnal:'isi',calculator:'isi',progres:'isi',tehnici:'tehnici',articole:'articole',comunitate:'comunitate',resurse:'resurse',contact:'contact'};
+  var map={despre:'despre',flow:'_',instrument:'_',jurnal:'_',calculator:'_',progres:'_',tehnici:'tehnici',articole:'articole',comunitate:'comunitate',resurse:'resurse',contact:'contact'};
   var links={};
   [].slice.call(document.querySelectorAll('#navLinks a')).forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
   if('IntersectionObserver' in window){
@@ -1753,19 +1723,6 @@ runCalculator();
   document.getElementById('noticeOk').addEventListener('click',function(){
     nb.hidden=true; try{localStorage.setItem('psyinsomnia_notice_ok','1');}catch(e){}
   });
-
-  // ISI: pliat implicit
-  var isiBtn=document.getElementById('isiToggle'), isiBody=document.getElementById('isiBody'), isiLbl=document.getElementById('isiToggleLabel');
-  function setIsi(open){
-    isiBody.hidden=!open; isiBtn.setAttribute('aria-expanded',open?'true':'false');
-    isiLbl.textContent=open?'Ascunde evaluarea':'Începe evaluarea';
-  }
-  isiBtn.addEventListener('click',function(){setIsi(isiBody.hidden);});
-  document.querySelectorAll('a[href="#isi"]').forEach(function(a){
-    if(a.closest('#navLinks')) return;
-    a.addEventListener('click',function(){setIsi(true);});
-  });
-  if(location.hash==='#isi') setIsi(true);
 
   // Secțiuni pliabile (Jurnal, Calculator, Progres, Tehnici, Resurse)
   function setSec(btn,open){
@@ -1788,6 +1745,13 @@ runCalculator();
   // Avatare în hero, copiate din secțiunea Despre noi
   var ph=document.querySelectorAll('#despre .person-head .photo');
   [['heroAv1',1],['heroAv2',0]].forEach(function(x){var el=document.getElementById(x[0]);if(el&&ph[x[1]])el.src=ph[x[1]].src;});
+
+  // Miniaturi video: dacă nu se pot încărca, se ascunde imaginea (fără handler inline)
+  document.querySelectorAll('img[src^="https://i.ytimg.com/"]').forEach(function(im){
+    var hide=function(){ im.style.display='none'; };
+    im.addEventListener('error',hide);
+    if(im.complete && im.naturalWidth===0) hide();
+  });
 
   // Deschide articolul din hash
   if(location.hash.indexOf('#art-')===0){var ar=document.querySelector(location.hash);if(ar&&ar.tagName==='DETAILS')ar.open=true;}
